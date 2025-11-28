@@ -22,7 +22,7 @@ services:
   backend:
     container_name: reasonans-backend
     build:
-      context: ./backend
+      context: ./Backend
       dockerfile: Dockerfile
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
@@ -42,7 +42,7 @@ services:
   frontend:
     container_name: reasonans-frontend
     build:
-      context: ./frontend
+      context: ./Frontend
       dockerfile: Dockerfile
     depends_on:
       - backend
