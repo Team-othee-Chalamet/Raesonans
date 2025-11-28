@@ -1,0 +1,17 @@
+name: ci.yml
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  java-test:
+    uses: ./.github/workflows/java-test.yml
+
+  docker-ci:
+    uses: ./.github/workflows/docker-ci.yml
