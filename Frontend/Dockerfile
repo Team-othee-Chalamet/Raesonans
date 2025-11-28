@@ -1,18 +1,12 @@
-# Build stage
-# Using the maven base img and specifying maven and JDK version
-FROM maven:3.9.11-eclipse-temurin-21 AS build
-# Select /app as the directory and copies pom and src into it
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-# Builds the application
-RUN mvn clean package -DskipTests
+# Smallest nginx base image
+FROM nginx:alpine
 
-# Runtime stage
-FROM eclipse-temurin:21-jre-alpine
-WORKDIR /app
-# extracts the JAR file from the directory and sets it as
-# the entrypoint for the docker container
-COPY --from=build /app/target/*.jar app.jar
-# Tells Docker to run the java -jar app.jar command when the container starts
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Copy everything in your frontend folder into Nginx HTML directory
+COPY . /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# -g and daemon off keeps nginx in the foreground alowwing proper tracking
+# will close when opened if these are missing
+CMD ["nginx", "-g", "daemon off;"]
