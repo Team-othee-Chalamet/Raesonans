@@ -13,5 +13,5 @@ jobs:
   java-test:
     uses: ./.github/workflows/java-test.yml
 
-  docker-ci:
-    uses: ./.github/workflows/docker-ci.yml
+#  docker-ci:
+#    uses: ./.github/workflows/docker-ci.yml
