@@ -1,0 +1,86 @@
+package com.example.backend.model;
+
+import java.util.List;
+
+public class Play {
+    String title;
+    List<Review> reviews;
+    String description;
+    List<Performance> performances;
+    String author;
+    Image splashImage;
+    List<Image> images;
+
+    //Constructors
+
+
+    public Play(String title, List<Review> reviews, String description, List<Performance> performances, String author, Image splashImage, List<Image> images) {
+        this.title = title;
+        this.reviews = reviews;
+        this.description = description;
+        this.performances = performances;
+        this.author = author;
+        this.splashImage = splashImage;
+        this.images = images;
+    }
+
+    //Getters
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Performance> getPerformances() {
+        return performances;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public Image getSplashImage() {
+        return splashImage;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    //Setters
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPerformances(List<Performance> performances) {
+        this.performances = performances;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setSplashImage(Image splashImage) {
+        this.splashImage = splashImage;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+}
