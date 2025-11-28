@@ -24,4 +24,4 @@ jobs:
           restore-keys: maven-${{ runner.os }}-
 
       - name: run tests
-        run: mvn test
+        run: cd ./backend && mvn test
