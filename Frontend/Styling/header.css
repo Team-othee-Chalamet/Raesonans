@@ -15,12 +15,18 @@ header {
     width: 100%;
 
     z-index: 100;
+
+    a {
+        all: unset;
+    }
 }
 
 .logo {
     height: 100%;
     align-self: flex-start;
-    margin-left: 8vh;
+    margin-left: 5vh;
+    margin-top: 2vh;
+    cursor: pointer;
 }
 
 .logocontainer {
