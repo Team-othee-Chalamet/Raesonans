@@ -9,20 +9,21 @@ import java.util.List;
 @Entity
 public class Play extends BaseEntity {
     String title;
-    List<Review> reviews;
     String description;
     String author;
-    List<Image> images;
 
     @OneToMany (mappedBy = "play")
-    List<Image> splashImages;
+    List<Image> images;
 
     @OneToMany (mappedBy = "play")
     List<Performance> performances;
 
+    @OneToMany (mappedBy = "play")
+    List<Review> reviews;
+
     //Constructors
 
-    public Play(String title, List<Review> reviews, String description, List<Performance> performances, String author, Image splashImage, List<Image> images) {
+    public Play(String title, List<Review> reviews, String description, List<Performance> performances, String author, List<Image> images) {
         this.title = title;
         this.reviews = reviews;
         this.description = description;

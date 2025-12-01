@@ -2,6 +2,7 @@ package com.example.backend.model;
 
 import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Review extends BaseEntity {
@@ -10,6 +11,9 @@ public class Review extends BaseEntity {
     String title;
     String reviewText;
     String sourceLink;
+
+    @ManyToOne
+    Play play;
 
     //Constructor
     public Review(int maxScore, int actualScore, String title, String reviewText, String sourceLink) {
