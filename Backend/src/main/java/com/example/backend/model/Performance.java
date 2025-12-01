@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class Performance extends BaseEntity {
+public class Performance extends BaseEntity implements Comparable<Performance> {
     LocalDate peformanceDate;
     LocalTime time;
     String ticketLink;
@@ -61,5 +61,10 @@ public class Performance extends BaseEntity {
 
     public void setTicketLink(String ticketLink) {
         this.ticketLink = ticketLink;
+    }
+
+    @Override
+    public int compareTo(Performance other) {
+        return this.peformanceDate.compareTo(other.peformanceDate);
     }
 }
