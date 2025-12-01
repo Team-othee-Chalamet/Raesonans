@@ -1,18 +1,25 @@
 package com.example.backend.model;
 
+import com.example.backend.baseClasses.BaseEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Performance {
-    Play play;
+@Entity
+public class Performance extends BaseEntity {
     LocalDate peformanceDate;
     LocalTime time;
     String ticketLink;
 
+    @ManyToOne
+    Play play;
+
     //Constructor
 
     public Performance(Play play, LocalDate peformanceDate, LocalTime time, String ticketLink) {
-        this.play = play;
+    //    this.play = play;
         this.peformanceDate = peformanceDate;
         this.time = time;
         this.ticketLink = ticketLink;
@@ -38,9 +45,9 @@ public class Performance {
 
     //Setters
 
-    public void setPlay(Play play) {
-        this.play = play;
-    }
+//    public void setPlay(Play play) {
+//        this.play = play;
+//    }
 
     public void setPeformanceDate(LocalDate peformanceDate) {
         this.peformanceDate = peformanceDate;
