@@ -9,5 +9,20 @@ form.addEventListener("submit", async (e) => {
 
 const formData = new FormData(form);
 
-console.log(Object.fromEntries(formData.entries()) + "form data submitted")
+console.log("form data submitted")
 });
+
+
+const plusButton = document.getElementById("plusKnap");
+
+form.addEventListener("click", async (e) => {
+e.preventDefault();
+
+
+
+
+
+})
+
+
+
