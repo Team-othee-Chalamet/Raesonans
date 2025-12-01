@@ -1,9 +1,10 @@
 package com.example.backend.model;
 
+import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Performer {
+public class Performer extends BaseEntity {
     String name;
     String role;
 
@@ -13,6 +14,8 @@ public class Performer {
         this.name = name;
         this.role = role;
     }
+
+    public Performer() {}
 
     //Getters
 

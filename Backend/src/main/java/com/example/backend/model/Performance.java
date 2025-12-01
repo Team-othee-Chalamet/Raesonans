@@ -16,7 +16,6 @@ public class Performance extends BaseEntity {
     @ManyToOne
     Play play;
 
-
     //Constructor
 
     public Performance(){}

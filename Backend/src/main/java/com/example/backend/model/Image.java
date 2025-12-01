@@ -1,10 +1,11 @@
 package com.example.backend.model;
 
+import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Image {
+public class Image extends BaseEntity {
     String imagePath;
     Boolean galleryVis;
     Boolean frontPageVis;
@@ -19,6 +20,8 @@ public class Image {
         this.galleryVis = galleryVis;
         this.frontPageVis = frontPageVis;
     }
+
+    public Image() {}
 
     //Getters
 

@@ -1,9 +1,10 @@
 package com.example.backend.model;
 
+import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Review {
+public class Review extends BaseEntity {
     int maxScore;
     int actualScore;
     String title;
@@ -18,6 +19,8 @@ public class Review {
         this.reviewText = reviewText;
         this.sourceLink = sourceLink;
     }
+
+    public Review() {}
 
     //Getters
 
