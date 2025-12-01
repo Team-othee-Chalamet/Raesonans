@@ -1,11 +1,12 @@
 package com.example.backend.model;
 
+import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
 
 import java.util.List;
 
 @Entity
-public class Play {
+public class Play extends BaseEntity {
     String title;
     List<Review> reviews;
     String description;
@@ -23,7 +24,7 @@ public class Play {
         this.description = description;
         this.performances = performances;
         this.author = author;
-        this.splashImage = splashImage;
+    //    this.splashImage = splashImage;
         this.images = images;
     }
 
@@ -79,11 +80,11 @@ public class Play {
         this.author = author;
     }
 
-    public void setSplashImage(Image splashImage) {
-        this.splashImage = splashImage;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
+//    public void setSplashImage(Image splashImage) {
+//        this.splashImage = splashImage;
+//    }
+//
+//    public void setImages(List<Image> images) {
+//        this.images = images;
+//    }
 }

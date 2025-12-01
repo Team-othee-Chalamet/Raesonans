@@ -1,5 +1,6 @@
 package com.example.backend.model;
 
+import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
@@ -7,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-public class Performance {
+public class Performance extends BaseEntity {
     LocalDate peformanceDate;
     LocalTime time;
     String ticketLink;
