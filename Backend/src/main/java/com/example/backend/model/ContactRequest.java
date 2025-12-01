@@ -1,6 +1,10 @@
 package com.example.backend.model;
 
-public class ContactRequest {
+import com.example.backend.baseClasses.BaseEntity;
+import jakarta.persistence.Entity;
+
+@Entity
+public class ContactRequest extends BaseEntity {
     String name;
     String email;
     String phoneNumber;
@@ -16,8 +20,9 @@ public class ContactRequest {
         this.message = message;
     }
 
-    //Getters
+    public ContactRequest() {}
 
+    //Getters
 
     public String getName() {
         return name;

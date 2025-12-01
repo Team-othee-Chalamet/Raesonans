@@ -2,23 +2,28 @@ package com.example.backend.model;
 
 import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
 @Entity
 public class Play extends BaseEntity {
     String title;
-    List<Review> reviews;
     String description;
-    List<Performance> performances;
     String author;
-    Image splashImage;
+
+    @OneToMany (mappedBy = "play")
     List<Image> images;
+
+    @OneToMany (mappedBy = "play")
+    List<Performance> performances;
+
+    @OneToMany (mappedBy = "play")
+    List<Review> reviews;
 
     //Constructors
 
-
-    public Play(String title, List<Review> reviews, String description, List<Performance> performances, String author, Image splashImage, List<Image> images) {
+    public Play(String title, List<Review> reviews, String description, List<Performance> performances, String author, List<Image> images) {
         this.title = title;
         this.reviews = reviews;
         this.description = description;
@@ -27,6 +32,8 @@ public class Play extends BaseEntity {
     //    this.splashImage = splashImage;
         this.images = images;
     }
+
+    public Play() {}
 
     //Getters
 
@@ -48,10 +55,6 @@ public class Play extends BaseEntity {
 
     public String getAuthor() {
         return author;
-    }
-
-    public Image getSplashImage() {
-        return splashImage;
     }
 
     public List<Image> getImages() {

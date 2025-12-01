@@ -1,6 +1,10 @@
 package com.example.backend.model;
 
-public class User {
+import com.example.backend.baseClasses.BaseEntity;
+import jakarta.persistence.Entity;
+
+@Entity
+public class User extends BaseEntity {
     String username;
     String password;
 
@@ -10,6 +14,8 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
+    public User() {}
 
     //Getters
 
