@@ -1,5 +1,8 @@
 package com.example.backend.model;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Performer {
     String name;
     String role;

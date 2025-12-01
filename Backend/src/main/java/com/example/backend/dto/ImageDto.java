@@ -1,4 +1,4 @@
 package com.example.backend.dto;
 
-public class ImageDto {
+public record ImageDto() {
 }

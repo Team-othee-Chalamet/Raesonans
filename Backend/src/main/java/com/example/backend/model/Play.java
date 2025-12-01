@@ -1,7 +1,9 @@
 package com.example.backend.model;
 
 import com.example.backend.baseClasses.BaseEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
@@ -12,11 +14,16 @@ public class Play extends BaseEntity {
     String description;
     List<Performance> performances;
     String author;
-    Image splashImage;
     List<Image> images;
 
-    //Constructors
+    @OneToMany (mappedBy = "play")
+    Image splashImage;
 
+    @OneToMany (mappedBy = "play")
+    Performance performance;
+
+
+    //Constructors
 
     public Play(String title, List<Review> reviews, String description, List<Performance> performances, String author, Image splashImage, List<Image> images) {
         this.title = title;

@@ -1,5 +1,8 @@
 package com.example.backend.model;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Review {
     int maxScore;
     int actualScore;

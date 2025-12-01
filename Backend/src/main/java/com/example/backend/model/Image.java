@@ -1,13 +1,18 @@
 package com.example.backend.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 
+@Entity
 public class Image {
     String imagePath;
     Boolean galleryVis;
     Boolean frontPageVis;
 
-    //Constructor
+    @ManyToOne
+    Play play;
 
+    //Constructor
 
     public Image(String imagePath, Boolean galleryVis, Boolean frontPageVis) {
         this.imagePath = imagePath;

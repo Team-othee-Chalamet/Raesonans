@@ -16,7 +16,10 @@ public class Performance extends BaseEntity {
     @ManyToOne
     Play play;
 
+
     //Constructor
+
+    public Performance(){}
 
     public Performance(Play play, LocalDate peformanceDate, LocalTime time, String ticketLink) {
     //    this.play = play;

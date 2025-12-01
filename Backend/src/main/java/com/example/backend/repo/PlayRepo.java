@@ -1,4 +1,7 @@
 package com.example.backend.repo;
 
-public class PlayRepo {
+import com.example.backend.model.Image;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PlayRepo extends JpaRepository<Image,Long> {
 }

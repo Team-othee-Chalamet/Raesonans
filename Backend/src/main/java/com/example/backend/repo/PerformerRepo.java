@@ -1,4 +1,7 @@
 package com.example.backend.repo;
 
-public class PerformerRepo {
+import com.example.backend.model.Performer;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PerformerRepo extends JpaRepository<Performer, Long> {
 }
