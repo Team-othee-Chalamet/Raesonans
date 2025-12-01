@@ -1,7 +1,10 @@
 package com.example.backend.model;
 
+import jakarta.persistence.Entity;
+
 import java.util.List;
 
+@Entity
 public class Play {
     String title;
     List<Review> reviews;
