@@ -55,4 +55,10 @@ header {
     font-size: medium;
 
     color: rgb(255, 0, 255);
+
+    transition: 1s;
+}
+
+.headerbutton:hover {
+    color: aqua;
 }
