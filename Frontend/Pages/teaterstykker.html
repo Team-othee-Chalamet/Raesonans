@@ -23,24 +23,27 @@
 <section class="gradient-bg">
     <div class="form-card">
         <form id="createPlayForm">
-            
             <h2>Opret Teaterstykke</h2>
-
             <label for="titel">TITEL</label>
             <input type="text" id="titel" name="titel">
-
             <label for="beskrivelse">BESKRIVELSE</label>
             <textarea id="beskrivelse" name="beskrivelse"></textarea>
 
-            <label for="forfatter">FORFATTER</label>
-            <input type="text" id="forfatter" name="forfatter">
-
-            <div class="plus-btn" id="plusKnap"+> </div>
-
+            <label for="kreditering">KREDITTERING</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <select id="job" name="job" style="flex: 1; padding: 8px; border: 1px solid #eee; border-radius: 3px; font-size: 14px;">
+                    <option value="">Vælg job</option>
+                    <option value="Instruktør">Instruktør</option>
+                    <option value="Skuespiller">Skuespiller</option>
+                    <option value="Forfatter">Forfatter</option>
+                    <option value="Scenograf">Scenograf</option>
+                </select>
+                <input type="text" id="navn" name="navn" placeholder="Navn" style="flex: 2; padding: 8px; border: 1px solid #eee; border-radius: 3px; font-size: 14px;">
+            </div>
+            <div class="plus-btn" id="plusKnap"></div>
             <button class="submit-btn" id="submitknap" type="submit">
                 TILFØJ FORESTILLING
             </button>
-
         </form>
     </div>
 </section>
