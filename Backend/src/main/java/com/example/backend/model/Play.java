@@ -3,6 +3,7 @@ package com.example.backend.model;
 import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 import java.util.List;
 
@@ -10,7 +11,12 @@ import java.util.List;
 public class Play extends BaseEntity {
     String title;
     String description;
-    String author;
+
+    @OneToOne
+    Image splashImage;
+
+    @OneToMany (mappedBy = "play")
+    List<Credit> credits;
 
     @OneToMany (mappedBy = "play")
     List<Image> images;
@@ -23,13 +29,13 @@ public class Play extends BaseEntity {
 
     //Constructors
 
-    public Play(String title, List<Review> reviews, String description, List<Performance> performances, String author, List<Image> images) {
+    public Play(String title, List<Review> reviews, String description, List<Performance> performances, List<Credit> credits, List<Image> images) {
         this.title = title;
         this.reviews = reviews;
+        this.credits = credits;
         this.description = description;
         this.performances = performances;
-        this.author = author;
-    //    this.splashImage = splashImage;
+        this.splashImage = splashImage;
         this.images = images;
     }
 
@@ -53,12 +59,16 @@ public class Play extends BaseEntity {
         return performances;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
     public List<Image> getImages() {
         return images;
+    }
+
+    public Image getSplashImage() {
+        return splashImage;
+    }
+
+    public List<Credit> getCredits() {
+        return credits;
     }
 
     //Setters
@@ -79,15 +89,12 @@ public class Play extends BaseEntity {
         this.performances = performances;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+
+    public void setSplashImage(Image splashImage) {
+        this.splashImage = splashImage;
     }
 
-//    public void setSplashImage(Image splashImage) {
-//        this.splashImage = splashImage;
-//    }
-//
-//    public void setImages(List<Image> images) {
-//        this.images = images;
-//    }
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
 }
