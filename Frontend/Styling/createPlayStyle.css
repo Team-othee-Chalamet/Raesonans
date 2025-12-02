@@ -163,6 +163,7 @@ footer .copyright {
 
 /* BOX STYLES */
 .box {
+    position: relative;
     background: white;
     border-radius: 6px;
     overflow: hidden;
