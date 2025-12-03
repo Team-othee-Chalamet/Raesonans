@@ -19,4 +19,12 @@ public class PerformanceMapper {
         return new PerformanceDto();
     }
 
+    public static Performance toEntity(PerformanceDto performanceDto){
+        Performance newPerformance = new Performance();
+
+        //Add real mapping here when Performance class is built
+
+        return newPerformance;
+    }
+
 }
