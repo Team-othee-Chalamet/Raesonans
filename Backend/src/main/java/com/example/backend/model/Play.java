@@ -1,10 +1,9 @@
 package com.example.backend.model;
 
 import com.example.backend.baseClasses.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,23 +12,24 @@ public class Play extends BaseEntity {
     String description;
 
     @OneToOne
-    Image splashImage;
+    @JoinColumn(name = "splash_image_id")
+    private Image splashImage;
 
-    @OneToMany (mappedBy = "play")
+    @OneToMany (mappedBy = "play", cascade = CascadeType.ALL)
     List<Credit> credits;
 
-    @OneToMany (mappedBy = "play")
+    @OneToMany (mappedBy = "play", cascade = CascadeType.ALL)
     List<Image> images;
 
-    @OneToMany (mappedBy = "play")
+    @OneToMany (mappedBy = "play", cascade = CascadeType.ALL)
     List<Performance> performances;
 
-    @OneToMany (mappedBy = "play")
+    @OneToMany (mappedBy = "play", cascade = CascadeType.ALL)
     List<Review> reviews;
 
     //Constructors
 
-    public Play(String title, List<Review> reviews, String description, List<Performance> performances, List<Credit> credits, List<Image> images) {
+    public Play(String title, Image splashImage, List<Review> reviews, String description, List<Performance> performances, List<Credit> credits, List<Image> images) {
         this.title = title;
         this.reviews = reviews;
         this.credits = credits;
@@ -39,7 +39,12 @@ public class Play extends BaseEntity {
         this.images = images;
     }
 
-    public Play() {}
+    public Play() {
+        this.credits = new ArrayList<>();
+        this.images = new ArrayList<>();
+        this.performances = new ArrayList<>();
+        this.reviews = new ArrayList<>();
+    }
 
     //Getters
 
@@ -96,5 +101,41 @@ public class Play extends BaseEntity {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    // Synchronizing methods for lists in play
+    public void addImage(Image image){
+        this.images.add(image);
+        image.setPlay(this);
+    }
+
+    public void addCredit(Credit credit){
+        this.credits.add(credit);
+        credit.setPlay(this);
+    }
+
+    public void addPerformance(Performance performance){
+        this.performances.add(performance);
+        performance.setPlay(this);
+    }
+
+    public void addReview(Review review){
+        this.reviews.add(review);
+        review.setPlay(this);
+    }
+
+    //ToString
+
+    @Override
+    public String toString() {
+        return "Play{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", splashImage=" + splashImage +
+                ", credits=" + credits +
+                ", images=" + images +
+                ", performances=" + performances +
+                ", reviews=" + reviews +
+                '}';
     }
 }

@@ -48,4 +48,33 @@ public class PlayMapper {
                 ReviewMapper.toDtoList(play.getReviews()),
                 ImageMapper.toDtoList(play.getImages()));
     }
+
+    public static Play toEntity(PlayDto playDto){
+        Play newPlay = new Play();
+        newPlay.setTitle(playDto.title());
+        newPlay.setDescription(playDto.description());
+
+        //We are not setting the splash image here, because the user is adding this at a later stage
+
+        //Adding credits using Synchronizing features
+        for (CreditDto cDto: playDto.creditDtos()){
+            newPlay.addCredit(CreditMapper.toEntity(cDto));
+            System.out.println("Added a credit");
+        }
+
+        //Adding performances using Synchronizing features
+        //NOTE: while not necessary at the moment, this will be nice if we make a
+        //  feature letting users create a new play
+        //  as they are creating a performance
+        for (PerformanceDto pDto: playDto.performanceDtos()){
+            newPlay.addPerformance(PerformanceMapper.toEntity(pDto));
+        }
+
+        //We are not adding reviews here, since they are added at a later stage
+
+        //We are not adding images here, as that is done at a later stage
+
+        return newPlay;
+    }
+
 }

@@ -20,4 +20,12 @@ public class CreditMapper {
     public static CreditDto toDto(Credit credit){
         return new CreditDto();
     }
+
+    public static Credit toEntity(CreditDto creditDto){
+        Credit newCredit = new Credit();
+
+        //Add proper Mapping here when building Credit class
+
+        return newCredit;
+    }
 }
