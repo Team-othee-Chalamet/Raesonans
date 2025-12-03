@@ -2,13 +2,19 @@ package com.example.backend.model;
 
 import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Image extends BaseEntity {
     String imagePath;
     Boolean galleryVis;
     Boolean frontPageVis;
+
+    @OneToOne
+    @JoinColumn(name = "splash_image_id")
+    Image splashImage;
 
     @ManyToOne
     Play play;
@@ -38,6 +44,8 @@ public class Image extends BaseEntity {
         return frontPageVis;
     }
 
+    public Play getPlay() { return play; }
+
     //Setters
 
     public void setImagePath(String imagePath) {
@@ -51,4 +59,6 @@ public class Image extends BaseEntity {
     public void setFrontPageVis(Boolean frontPageVis) {
         this.frontPageVis = frontPageVis;
     }
+
+    public void setPlay(Play play) { this.play = play; }
 }

@@ -22,4 +22,12 @@ public class ImageMapper {
     public static ImageDto toDto(Image image){
         return new ImageDto();
     }
+
+    public static Image toEntity(ImageDto imageDto){
+        Image newImage = new Image();
+
+        //Add real mapping here when image class is finished
+
+        return newImage;
+    }
 }
