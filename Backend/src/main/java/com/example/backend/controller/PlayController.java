@@ -48,6 +48,34 @@ public class PlayController {
         }
         catch (RuntimeException e){
             System.out.println("We encountered an error");
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PlayDto> putPlay(@RequestBody PlayDto playDto, @PathVariable Long id){
+        try{
+            System.out.println("Recieved a play put request. " + playDto);
+            return ResponseEntity.ok(playService.updatePlay(playDto, id));
+        }
+        catch (RuntimeException e){
+            System.out.println("We encountered an error while updating the play");
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PlayDto> deletePlay(@PathVariable Long id){
+        try{
+            System.out.println("Recieved a play delete request. " + id);
+            playService.deletePlay(id);
+            return ResponseEntity.ok(null);
+        }
+        catch (RuntimeException e){
+            System.out.println("We encountered an error while deleting the play");
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }

@@ -124,6 +124,35 @@ public class Play extends BaseEntity {
         review.setPlay(this);
     }
 
+    //Removal synchronizing functions
+    public void removeCredits(){
+        for (Credit c: credits){
+            c.setPlay(null);
+        }
+        credits.clear();
+    }
+
+    public void removeReviews(){
+        for (Review r: reviews){
+            r.setPlay(null);
+        }
+        reviews.clear();
+    }
+
+    public void removePerformances(){
+        for (Performance p: performances){
+            p.setPlay(null);
+        }
+        performances.clear();
+    }
+
+    public void removeImages(){
+        for (Image i: images){
+            i.setPlay(null);
+        }
+        images.clear();
+    }
+
     //ToString
 
     @Override
