@@ -4,8 +4,7 @@ import com.example.backend.dto.ImageDto;
 import com.example.backend.dto.PlayDto;
 import com.example.backend.dto.PlayMapper;
 import com.example.backend.dto.PlayPreviewDto;
-import com.example.backend.model.Performance;
-import com.example.backend.model.Play;
+import com.example.backend.model.*;
 import com.example.backend.repo.PlayRepo;
 import org.springframework.stereotype.Service;
 
@@ -59,19 +58,51 @@ public class PlayService {
 
         cleanPlay(playToUpdate);
 
+        populatePlay(playToUpdate, updatedPlayInfo);
+
+        playRepo.save(playToUpdate);
+
         return PlayMapper.toFullDto(playToUpdate);
     }
 
     //This method cleans the play of any previous information, except for the ID.
-    Play cleanPlay(Play play){
+    void cleanPlay(Play play){
         play.setTitle(null);
         play.setSplashImage(null);
         play.setDescription(null);
-//        play.removePerformances();
-//        play.removeCredits();
-//        play.removeImages();
-//        play.removeReviews();
+        play.removePerformances();
+        play.removeCredits();
+        play.removeImages();
+        play.removeReviews();
 
-        return play;
+    }
+
+    //This method recieves two plays, and populates the first play with the information from the second play, while keeping the id of the first intact.
+    void populatePlay(Play cleanPlay, Play playWithInfo){
+        cleanPlay.setTitle(playWithInfo.getTitle());
+        cleanPlay.setDescription(playWithInfo.getDescription());
+        cleanPlay.setSplashImage(playWithInfo.getSplashImage());
+
+        for (Performance p: playWithInfo.getPerformances()){
+            cleanPlay.addPerformance(p);
+        }
+        for (Credit c: playWithInfo.getCredits()){
+            cleanPlay.addCredit(c);
+        }
+        for (Image i: playWithInfo.getImages()){
+            cleanPlay.addImage(i);
+        }
+        for (Review r: playWithInfo.getReviews()){
+            cleanPlay.addReview(r);
+        }
+    }
+
+    public void deletePlay(Long id){
+        try{
+            playRepo.deleteById(id);
+        }
+        catch (RuntimeException e){
+            throw e;
+        }
     }
 }
