@@ -12,8 +12,8 @@ public class Play extends BaseEntity {
     String description;
     String author;
 
-    @OneToMany (mappedBy = "play")
-    List<Image> images;
+//    @OneToMany (mappedBy = "play")
+//    List<Image> images;
 
     @OneToMany (mappedBy = "play")
     List<Performance> performances;
@@ -30,7 +30,7 @@ public class Play extends BaseEntity {
         this.performances = performances;
         this.author = author;
     //    this.splashImage = splashImage;
-        this.images = images;
+    //    this.images = images;
     }
 
     public Play() {}
@@ -57,9 +57,9 @@ public class Play extends BaseEntity {
         return author;
     }
 
-    public List<Image> getImages() {
-        return images;
-    }
+//    public List<Image> getImages() {
+//        return images;
+//    }
 
     //Setters
 
@@ -84,9 +84,9 @@ public class Play extends BaseEntity {
     }
 
 //    public void setSplashImage(Image splashImage) {
-//        this.splashImage = splashImage;
+//        this.image = splashImage;
 //    }
-//
+
 //    public void setImages(List<Image> images) {
 //        this.images = images;
 //    }
