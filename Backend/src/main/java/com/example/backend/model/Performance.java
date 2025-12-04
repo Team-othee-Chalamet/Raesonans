@@ -47,9 +47,7 @@ public class Performance extends BaseEntity implements Comparable<Performance> {
 
     //Setters
 
-    public void setPlay(Play play) {
-        this.play = play;
-    }
+    public void setPlay(Play play) { this.play = play; }
 
     public void setPerformanceDate(LocalDate performanceDate) {
         this.performanceDate = performanceDate;

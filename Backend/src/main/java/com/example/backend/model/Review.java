@@ -69,4 +69,8 @@ public class Review extends BaseEntity {
     public void setSourceLink(String sourceLink) {
         this.sourceLink = sourceLink;
     }
+
+    public void setPlay(Play play) {
+        this.play = play;
+    }
 }
