@@ -1,0 +1,40 @@
+.pageTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.imgAndText {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
+
+    outline: 1px solid red;
+}
+
+.image {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-color: black;
+
+    outline: 1px solid green;
+}
+
+.visionText {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background-color: orange;
+    
+    outline: 1px solid green;
+}

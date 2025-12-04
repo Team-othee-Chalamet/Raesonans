@@ -11,3 +11,6 @@
     const html = await fetch("../Pages/footer.html").then(r => r.text());
     footer.innerHTML = html;
 })();
+
+// Should be one exported function that others can import
+// into their script to keep a smooth structure
