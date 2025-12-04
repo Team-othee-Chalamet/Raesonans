@@ -6,7 +6,8 @@ import com.example.backend.dto.LoginResponseDTO;
 import com.example.backend.dto.UserDTO;
 import com.example.backend.model.User;
 import com.example.backend.repo.UserRepo;
-import com.example.backend.util.PasswordHasher;
+import com.example.backend.util.Hasher;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -32,16 +33,19 @@ public class AuthService {
 
         // If user exists, check if password matches
         User foundUser = optionalUser.get();
-        if(!PasswordHasher.hash(password).equals(foundUser.getPassword())) {
+        if(!Hasher.hashPassword(password).equals(foundUser.getPassword())) {
             throw new RuntimeException("Username and password does not match");
         }
         //Turn employee into a DTO
         UserDTO userDTO = LoginMapper.toUserDto(foundUser);
         // Generate a (simple "fake") token
         String returnToken = TokenService.generateToken();
-
         // Create the response and return it
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO(returnToken, userDTO);
+
+        // TEST: Outcomment all and have it return LoginResponseDTO to check connection
+        // LoginResponseDTO loginTestResponse = new LoginResponseDTO("Test", new UserDTO("Test"));
+
 
         return loginResponseDTO;
     }
