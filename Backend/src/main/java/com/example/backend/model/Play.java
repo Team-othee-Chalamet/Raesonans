@@ -15,7 +15,7 @@ public class Play extends BaseEntity {
     @JoinColumn(name = "splash_image_id")
     private Image splashImage;
 
-    @OneToMany (mappedBy = "play", cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "play", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Credit> credits;
 
     @OneToMany (mappedBy = "play", cascade = CascadeType.ALL)

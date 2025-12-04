@@ -1,6 +1,7 @@
 package com.example.backend.dto;
 
 import com.example.backend.model.Credit;
+import com.example.backend.service.CreditService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -8,6 +9,12 @@ import java.util.List;
 
 @Component
 public class CreditMapper {
+
+    static CreditService creditService;
+
+    public CreditMapper(CreditService creditService){
+        this.creditService = creditService;
+    }
 
     public static List<CreditDto> toDtoList(List<Credit> credits){
         List<CreditDto> dtos = new ArrayList<>();
@@ -18,13 +25,21 @@ public class CreditMapper {
     }
 
     public static CreditDto toDto(Credit credit){
-        return new CreditDto();
+        return new CreditDto(credit.getId(), credit.getRole(), credit.getName());
     }
 
     public static Credit toEntity(CreditDto creditDto){
-        Credit newCredit = new Credit();
 
-        //Add proper Mapping here when building Credit class
+        Credit newCredit;
+        
+        if (creditDto.id() != null){
+            newCredit = creditService.getCreditById(creditDto.id());
+        }else {
+            newCredit = new Credit();
+        }
+
+        newCredit.setRole(creditDto.role());
+        newCredit.setName(creditDto.name());
 
         return newCredit;
     }

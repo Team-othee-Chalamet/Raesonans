@@ -13,6 +13,14 @@ public class Credit extends BaseEntity {
     @ManyToOne
     Play play;
 
+    public Credit() {
+    }
+
+    public Credit(String role, String name) {
+        this.role = role;
+        this.name = name;
+    }
+
     public String getRole() {
         return role;
     }
