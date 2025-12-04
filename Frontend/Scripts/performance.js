@@ -1,4 +1,4 @@
-import { getPerformances } from '../Services/performanceService.js';
+import { getPerformances } from '../API/performanceApi.js';
 
 window.addEventListener('DOMContentLoaded', initApp);
 
@@ -7,17 +7,17 @@ function initApp() {
 }
 
 async function reloadAndRender() {
-    const performances = await getPerformances;
+    const performances = await getPerformances();
     const container = document.querySelector("#performance-container");
-    performances.forEach(renderPerformances);
+    performances.forEach(performance => renderPerformances(performance, container));
 }
 
-function renderPerformances(performances) {
-    const performance = document.createElement("div");
-    performance.className = "performance-card";
+function renderPerformances(performance, container) {
+    const performanceCard = document.createElement("div");
+    performanceCard.className = "performance-card";
 
-    performance.innerHTML = `
-    <img src="${performance.image} class="performance-image" />
+    performanceCard.innerHTML = `
+    <img src="${performance.image}" class="performance-image" />
 
     <div class="performance-info">
         <h3 class="performance-title">${performance.title}</h3>
@@ -33,6 +33,6 @@ function renderPerformances(performances) {
     <button class="ticket-btn">Køb Billetter</button>
     `;
 
-    container.appendChild(performance);
+    container.appendChild(performanceCard);
 
 }
