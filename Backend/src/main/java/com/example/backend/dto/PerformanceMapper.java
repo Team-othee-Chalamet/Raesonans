@@ -25,7 +25,6 @@ public class PerformanceMapper {
         Performance performance = new Performance();
         performance.setId(performanceDto.id());
         performance.setPerformanceDate(performanceDto.performanceDate());
-        performance.setPerformanceDate(performanceDto.performanceDate());
         performance.setTime(performanceDto.time());
         performance.setPlay(PlayMapper.toPreviewEntity(performanceDto.playPreviewDto()));
         return performance;
