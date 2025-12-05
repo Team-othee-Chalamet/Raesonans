@@ -1,4 +1,4 @@
-import {fetchPlayById} from "../API's/playApi.js";
+import {fetchPlayById} from "../API/playApi.js";
 
 
 async function loadPlay() {
