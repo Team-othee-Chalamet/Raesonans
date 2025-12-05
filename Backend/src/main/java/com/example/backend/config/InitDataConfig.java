@@ -29,24 +29,29 @@ public class InitDataConfig {
 
                 // ----- LAV NOGLE TEST-PLAYS -----
                 Play hamlet = new Play();
+                hamlet.setTitle("Hamlet");
                 Play macbeth = new Play();
+                macbeth.setTitle("Macbeth");
 
                 playRepository.saveAll(List.of(hamlet, macbeth));
 
                 // ----- LAV PERFORMANCE DATA -----
                 Performance perf1 = new Performance();
+                perf1.setLocation("Århus teaterskole");
                 perf1.setPerformanceDate(LocalDate.of(2025, 3, 12));
                 perf1.setTime(LocalTime.of(19, 30));
                 perf1.setTicketLink("https://ticketmaster.dk/event/hamlet1");
                 perf1.setPlay(hamlet);
 
                 Performance perf2 = new Performance();
+                perf2.setLocation("Århus teaterskole");
                 perf2.setPerformanceDate(LocalDate.of(2025, 3, 14));
                 perf2.setTime(LocalTime.of(20, 0));
                 perf2.setTicketLink("https://ticketmaster.dk/event/hamlet2");
                 perf2.setPlay(hamlet);
 
                 Performance perf3 = new Performance();
+                perf3.setLocation("Århus teaterskole");
                 perf3.setPerformanceDate(LocalDate.of(2025, 4, 2));
                 perf3.setTime(LocalTime.of(18, 0));
                 perf3.setTicketLink("https://ticketmaster.dk/event/macbeth1");
