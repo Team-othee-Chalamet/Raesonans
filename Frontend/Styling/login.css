@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 100vh;
+    
+    width: 100%;
+    background-color: blueviolet;
+}
+
+.loginBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 5%;
+    padding: 10%;
+
+    height: fit-content;
+    width: fit-content;
+
+    background-color: brown;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: fit-content;
+
+    outline: 1px solid red;
+}
+
+input {
+    margin: 10%;
+}
