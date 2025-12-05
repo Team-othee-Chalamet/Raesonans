@@ -16,15 +16,16 @@ public class PerformanceMapper {
     }
 
     public static PerformanceDto toDto(Performance performance){
-        return new PerformanceDto();
+        return new PerformanceDto(performance.getId(), performance.getPerformanceDate(), performance.getTime(), performance.getTicketLink(), performance.getPlay());
     }
 
     public static Performance toEntity(PerformanceDto performanceDto){
-        Performance newPerformance = new Performance();
-
-        //Add real mapping here when Performance class is built
-
-        return newPerformance;
+        Performance performance = new Performance();
+        performance.setId(performanceDto.id());
+        performance.setPerformanceDate(performanceDto.performanceDate());
+        performance.setPerformanceDate(performanceDto.performanceDate());
+        performance.setTime(performanceDto.time());
+        performance.setPlay(performanceDto.play());
+        return performance;
     }
-
 }

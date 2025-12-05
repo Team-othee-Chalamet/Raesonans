@@ -3,7 +3,7 @@ package com.example.backend.baseClasses;
 import jakarta.persistence.*;
 
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
