@@ -7,6 +7,7 @@ import com.example.backend.repo.PlayRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,6 +17,7 @@ import java.util.List;
 public class InitDataConfig {
 
     @Bean
+    @Profile("!test")
     CommandLineRunner loadTestData(
             PerformanceRepo performanceRepository,
             PlayRepo playRepository) {
