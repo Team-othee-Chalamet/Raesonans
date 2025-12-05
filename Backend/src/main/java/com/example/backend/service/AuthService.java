@@ -4,20 +4,19 @@ import com.example.backend.dto.LoginMapper;
 import com.example.backend.dto.LoginRequestDTO;
 import com.example.backend.dto.LoginResponseDTO;
 import com.example.backend.dto.UserDTO;
-import com.example.backend.model.User;
-import com.example.backend.repo.UserRepo;
+import com.example.backend.model.AppUser;
+import com.example.backend.repo.AppUserRepo;
 import com.example.backend.util.Hasher;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class AuthService {
-    UserRepo userRepo;
+    AppUserRepo appUserRepo;
 
-    public AuthService(UserRepo userRepo){
-        this.userRepo = userRepo;
+    public AuthService(AppUserRepo appUserRepo){
+        this.appUserRepo = appUserRepo;
     }
 
     public LoginResponseDTO authenticateLogin(LoginRequestDTO loginRequestDTO) {
@@ -26,18 +25,18 @@ public class AuthService {
         String password = loginRequestDTO.password();
 
         // Check if there is a user with that username
-        Optional<User> optionalUser = userRepo.findByUsername((username));
+        Optional<AppUser> optionalUser = appUserRepo.findByUsername((username));
         if(!optionalUser.isPresent()) {
             throw new RuntimeException("No user found with username: "+username);
         }
 
         // If user exists, check if password matches
-        User foundUser = optionalUser.get();
-        if(!Hasher.hashPassword(password).equals(foundUser.getPassword())) {
+        AppUser foundAppUser = optionalUser.get();
+        if(!Hasher.hashPassword(password).equals(foundAppUser.getPassword())) {
             throw new RuntimeException("Username and password does not match");
         }
         //Turn employee into a DTO
-        UserDTO userDTO = LoginMapper.toUserDto(foundUser);
+        UserDTO userDTO = LoginMapper.toUserDto(foundAppUser);
         // Generate a (simple "fake") token
         String returnToken = TokenService.generateToken();
         // Create the response and return it
