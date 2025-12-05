@@ -6,6 +6,11 @@ init();
 function init(){}
 
 
+// Create new Play
+/*export function createPlay(playDto) {
+    return post(BASE_URL, playDto);
+}*/
+
 function createPlay() {
     const form = document.getElementById("createPlayForm");
     form.addEventListener("submit", async (e) => {

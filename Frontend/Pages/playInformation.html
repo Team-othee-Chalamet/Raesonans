@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specific Play Page</title>
+    <link rel="stylesheet" href="../Styling/playInformation.css">
+    <link rel="stylesheet" href="../Styling/header.css">
+
+</head>
+<body>
+
+<header id="header"></header>
+
+<div class="container">
+
+    <!-- LEFT COLUMN -->
+    <aside class="left-col">
+        <h3>Info</h3>
+        <div id="infoBox">
+            <!-- Dynamically filled -->
+        </div>
+    </aside>
+
+    <!-- MIDDLE COLUMN -->
+    <main class="middle-col">
+
+        <!-- Play description -->
+        <section class="section">
+            <h2 id="playTitleMiddle">Nemt</h2>
+            <p id="playDescription"></p>
+        </section>
+
+        <!-- Performers -->
+        <section class="section">
+            <h3>Medvirkende</h3>
+            <ul id="performersList"></ul>
+        </section>
+
+        <!-- Ticket link -->
+        <section class="section">
+            <h3>Link til køb</h3>
+            <a id="ticketLink" href="#" target="_blank"></a>
+        </section>
+
+        <!-- Credits -->
+        <section class="section">
+            <h3>Kreditering</h3>
+            <div id="creditsList" class="credits"></div>
+        </section>
+
+        <!-- Supporters -->
+        <section class="section">
+            <h3>Med støtte fra</h3>
+            <ul id="supportList"></ul>
+        </section>
+
+    </main>
+
+    <!-- RIGHT COLUMN -->
+    <aside class="right-col">
+        <h3>Anmeldelser</h3>
+        <div id="reviewsContainer"></div>
+    </aside>
+
+</div>
+
+<script type="module" src="../Scripts/header.js"></script>
+<script type="module" src="../Scripts/playInformationScript.js"></script>
+
+
+</body>
+</html>
