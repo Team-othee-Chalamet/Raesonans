@@ -1,8 +1,8 @@
-import {fetchPlayById} from "../API's/playApi.js";
+import {fetchPlayById} from "../API/playApi.js";
 
 
-async function loadPlay() {
-const playId = 28;
+async function loadPlay() { //metoden kan godt loade et play, playId'et er dog hardcodet, det skal lige ændres
+const playId = 59;
 
 const play = await fetchPlayById(playId);
 console.log(play);
