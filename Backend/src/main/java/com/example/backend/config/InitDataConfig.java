@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-
+/*
 @Configuration
 public class InitDataConfig {
 
@@ -58,4 +58,4 @@ public class InitDataConfig {
             }
         };
     }
-}
+}*/
