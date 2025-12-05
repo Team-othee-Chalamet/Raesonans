@@ -4,18 +4,18 @@ import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
 
 @Entity
-public class User extends BaseEntity {
+public class AppUser extends BaseEntity {
     String username;
     String password;
 
     //Constructor
 
-    public User(String username, String password) {
+    public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User() {}
+    public AppUser() {}
 
     //Getters
 
