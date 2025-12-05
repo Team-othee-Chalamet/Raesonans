@@ -18,12 +18,13 @@ public class PerformanceMapper {
 
     public static PerformanceDto toDto(Performance performance){
         Play play = performance.getPlay();
-        return new PerformanceDto(performance.getId(), performance.getPerformanceDate(), performance.getTime(), performance.getTicketLink(), PlayMapper.toPreviewDto(play));
+        return new PerformanceDto(performance.getId(), performance.getLocation(), performance.getPerformanceDate(), performance.getTime(), performance.getTicketLink(), PlayMapper.toPreviewDto(play));
     }
 
     public static Performance toEntity(PerformanceDto performanceDto){
         Performance performance = new Performance();
         performance.setId(performanceDto.id());
+        performance.setLocation(performanceDto.location());
         performance.setPerformanceDate(performanceDto.performanceDate());
         performance.setTime(performanceDto.time());
         performance.setPlay(PlayMapper.toPreviewEntity(performanceDto.playPreviewDto()));

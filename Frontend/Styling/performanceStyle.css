@@ -1,0 +1,118 @@
+.performance-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    max-height: 200px; /* normal højde */
+    position: relative;
+}
+
+.performance-card.expanded {
+    max-height: 600px; /* udvidet højde */
+}
+
+.performance-top {
+    display: flex;
+    align-items: center;
+}
+
+.performance-img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.performance-info {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.performance-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.performance-location {
+    margin: 5px 0 0 0;
+    color: #555;
+    font-size: 15px;
+}
+
+.performance-date {
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.performance-date .day {
+    display: block;
+    font-size: 32px;
+}
+
+.performance-date .month {
+    display: block;
+    font-size: 18px;
+    margin-top: -5px;
+}
+
+.performance-date .time {
+    display: block;
+    font-size: 14px;
+    margin-top: 3px;
+    color: #333;
+}
+
+/* Pil-knap i bunden */
+.toggle-btn {
+    width: 55px;
+    height: 55px;
+    background: #e649b4;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 26px;
+    cursor: pointer;
+
+    position: absolute;
+    left: 50%;
+    bottom: -27px; /* Halvdelen af knappen stikker ud */
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s;
+}
+
+.performance-card.expanded .toggle-btn {
+    transform: translateX(-50%) rotate(180deg);
+}
+
+/* Det skjulte udvidede indhold */
+.performance-details {
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.performance-card.expanded .event-details {
+    opacity: 1;
+}
+
+.ticket-btn {
+    display: inline-block;
+    padding: 10px 16px;
+    margin-top: 10px;
+    background: #e649b4;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
