@@ -9,6 +9,7 @@ import java.time.LocalTime;
 
 @Entity
 public class Performance extends BaseEntity implements Comparable<Performance> {
+    String location;
     LocalDate performanceDate;
     LocalTime time;
     String ticketLink;
@@ -20,8 +21,9 @@ public class Performance extends BaseEntity implements Comparable<Performance> {
 
     public Performance(){}
 
-    public Performance(Play play, LocalDate peformanceDate, LocalTime time, String ticketLink) {
+    public Performance(Play play, String location, LocalDate peformanceDate, LocalTime time, String ticketLink) {
         this.play = play;
+        this.location = location;
         this.performanceDate = peformanceDate;
         this.time = time;
         this.ticketLink = ticketLink;
@@ -45,9 +47,15 @@ public class Performance extends BaseEntity implements Comparable<Performance> {
         return ticketLink;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
     //Setters
 
     public void setPlay(Play play) { this.play = play; }
+
+    public void setLocation(String location) { this.location = location; }
 
     public void setPerformanceDate(LocalDate performanceDate) {
         this.performanceDate = performanceDate;
