@@ -35,7 +35,8 @@ public class AuthService {
         if(!Hasher.hashPassword(password).equals(foundAppUser.getPassword())) {
             throw new RuntimeException("Username and password does not match");
         }
-        //Turn employee into a DTO
+
+        //Turn user into a DTO
         UserDTO userDTO = LoginMapper.toUserDto(foundAppUser);
         // Generate a (simple "fake") token
         String returnToken = TokenService.generateToken();
@@ -44,7 +45,6 @@ public class AuthService {
 
         // TEST: Outcomment all and have it return LoginResponseDTO to check connection
         // LoginResponseDTO loginTestResponse = new LoginResponseDTO("Test", new UserDTO("Test"));
-
 
         return loginResponseDTO;
     }

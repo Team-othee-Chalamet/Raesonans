@@ -2,6 +2,7 @@ package com.example.backend.config;
 
 import com.example.backend.model.AppUser;
 import com.example.backend.repo.AppUserRepo;
+import com.example.backend.util.Hasher;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +22,7 @@ public class InitUserConfig {
             appUserRepo.deleteAll();
 
             if (appUserRepo.count() == 0) {
-                AppUser Peter = new AppUser("Peter", "Test");
+                AppUser Peter = new AppUser("peter", Hasher.hashPassword("test"));
                 AppUser Frederik = new AppUser("Frederik", "Test");
                 AppUser Sarah = new AppUser("Sarah", "Test");
                 AppUser Mikkel = new AppUser("Mikkel", "Test");
