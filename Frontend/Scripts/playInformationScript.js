@@ -1,8 +1,12 @@
 import {fetchPlayById} from "../API/playApi.js";
 
 
+// læser sendt id fra url
+const urlParams = new URLSearchParams(window.location.search);
+const playId = urlParams.get("id");
+
 async function loadPlay() { //metoden kan godt loade et play, playId'et er dog hardcodet, det skal lige ændres
-const playId = 59;
+
 
 const play = await fetchPlayById(playId);
 console.log(play);

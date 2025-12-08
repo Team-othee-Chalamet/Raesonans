@@ -1,6 +1,6 @@
 import { get, put, del } from "../Scripts/fetchUtil.js"; // Import the utility functions
 
-const API_URL = "http://localhost:8080/api/play";
+const API_URL = "http://localhost:8080/api/plays";
 
 
 // Check if user is logged in (replace with backend check)
@@ -11,12 +11,7 @@ function isLoggedIn() {
 
 // GET all plays
 async function fetchAllPlays() {
-    try {
-        const plays = await get(API_URL);
-        renderPlays(plays);
-    } catch (error) {
-        console.error("Error fetching plays:", error);
-    }
+    return await get(API_URL);
 }
 
 // Update (PUT) a play (only if logged in)
@@ -55,7 +50,7 @@ async function deletePlay(id) {
 function renderPlays(plays, gridId) {
     const container = document.getElementById(gridId);
     container.innerHTML = "";
-
+    console.log(plays);
     plays.forEach(play => {
         const box = document.createElement("div");
         box.classList.add("play-box");
@@ -65,26 +60,32 @@ function renderPlays(plays, gridId) {
             <p>${play.description}</p>
         `;
 
+        // Redirect on click og send play.id med
+        box.addEventListener("click", () => {
+            window.location.href = `playInformation.html?id=${play.id}`;
+        });
+
         container.appendChild(box);
     });
 }
 
 
 //Fetch alle aktuelle plays
-function fetchAllCommingPlays(){
-
+async function fetchAktuellePlays() {
+    const plays = await fetchAllPlays();
+    return plays.filter(p => p.isActive === true);
 }
 
-
 //Fetch alle forrige plays
-function fetchAllPastPlays(){
-    
+async function fetchTidligerePlays() {
+    const plays = await fetchAllPlays();
+    return plays.filter(p => p.isActive === false);
 }
 
 
 
 // Initialize
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
 
     // Hent alle plays
@@ -98,17 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Få alle plays efter dags dato og sæt dem in i aktuelleItems
 
 
-    renderBoxes(aktuelleItems, "aktuelle-grid");
+    renderPlays(aktuelleItems, "aktuelle-grid");
 
 
 
     // Få alle plays for dags dato og sæt dem ind i tidligereItems
 
 
-    renderBoxes(tidligereItems, "tidligere-grid");
-
-    
-
+    renderPlays(tidligereItems, "tidligere-grid");
     
     
 });
