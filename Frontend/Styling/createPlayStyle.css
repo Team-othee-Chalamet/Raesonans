@@ -141,3 +141,90 @@ footer .copyright {
     font-size: 13px;
     opacity: 0.8;
 }
+/* SECTIONS */
+.section {
+    padding: 60px 50px;
+}
+
+.section h2 {
+    color: #6a3dad;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+/* GRID LAYOUT */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* BOX STYLES */
+.box {
+    position: relative;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+}
+
+.box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.box-content {
+    padding: 20px;
+}
+
+.box h3 {
+    margin: 0 0 10px;
+    color: #6a3dad;
+    font-size: 18px;
+}
+
+.box p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* REDIGER BUTTON */
+.rediger-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff59c7;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+.box.logged-in .rediger-btn {
+    display: block; /* Show if logged in */
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 20px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
