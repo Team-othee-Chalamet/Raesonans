@@ -46,6 +46,11 @@ public class AuthService {
         // TEST: Outcomment all and have it return LoginResponseDTO to check connection
         // LoginResponseDTO loginTestResponse = new LoginResponseDTO("Test", new UserDTO("Test"));
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
         return loginResponseDTO;
     }
 }

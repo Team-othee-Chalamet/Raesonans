@@ -3,11 +3,14 @@ console.log("login.js loaded");
 //Wait for DOM to load
 document.addEventListener("DOMContentLoaded", initApp);
 
+document.addEventListener("mousemove", changeBackgroundColor);
+
 //Import post function
 import { post } from "../Scripts/fetchUtil.js"
 
 function initApp(){
     initLogin();
+    changeBackgroundColor();
 }
 
 //Add eventlistener to the form
@@ -39,3 +42,21 @@ async function handleLogin(event) {
         alert("Forkert adgangskode eller brugernavn.");
     }
 }
+
+function changeBackgroundColor(event) {
+        const background = document.getElementsByClassName("main")[0];
+        const mouseY = event.clientY;
+        const mouseX = event.clientX;
+
+        const width = window.innerWidth;
+        const height = window.innerHeight
+
+        console.log("x:" + mouseX);
+        console.log("y:" + mouseY);
+
+        const red = Math.abs(Math.sin(mouseX)) * 150;
+        const green = Math.abs(Math.cos(mouseX)) * 150;
+        const blue = Math.abs(Math.cos(mouseY)) * 100;
+
+        background.style.backgroundColor = `rgb(${red}, 100, 100)`;
+    }
