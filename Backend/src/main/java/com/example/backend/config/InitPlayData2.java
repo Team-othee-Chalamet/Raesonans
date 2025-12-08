@@ -4,9 +4,11 @@ import com.example.backend.model.Play;
 import com.example.backend.repo.PlayRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
+@Profile("!test")
 public class InitPlayData2 implements CommandLineRunner {
     private final PlayRepo playRepository;
 
