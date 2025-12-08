@@ -2,6 +2,10 @@ package com.example.backend.util;
 
 public class Hasher {
 
+    public static void main(String[] args) {
+        System.out.println(hashPassword("Hejmeddig"));
+    }
+
     public static String hashPassword(String password) {
         StringBuilder sb = new StringBuilder();
 
@@ -11,9 +15,11 @@ public class Hasher {
         for (char c : password.toCharArray()) {
             tempMod = (int) c;
             if (modifier > tempMod)
-            {sb.append(modifier % tempMod);}
+            {sb.append(c % tempMod);}
             else
-            {sb.append(tempMod % modifier);}
+            {sb.append(c % modifier);}
+
+            modifier = tempMod;
             }
 
         return sb.toString();
