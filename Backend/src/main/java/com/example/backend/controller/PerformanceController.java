@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.PerformanceDto;
-import com.example.backend.model.Performance;
 import com.example.backend.service.PerformanceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,8 @@ public class PerformanceController {
 
     @GetMapping
     public ResponseEntity<List<PerformanceDto>> GetAllPerformances() {
-        System.out.println(performanceService.GetAllPerformances());
-        return ResponseEntity.ok(performanceService.GetAllPerformances());
+        System.out.println(performanceService.getAllPerformances());
+        return ResponseEntity.ok(performanceService.getAllPerformances());
     }
+
 }
