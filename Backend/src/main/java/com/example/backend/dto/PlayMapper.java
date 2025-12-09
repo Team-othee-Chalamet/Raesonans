@@ -1,6 +1,7 @@
 package com.example.backend.dto;
 
 import com.example.backend.model.Play;
+import com.example.backend.service.PlayService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -46,7 +47,8 @@ public class PlayMapper {
                 CreditMapper.toDtoList(play.getCredits()),
                 ImageMapper.toDto(play.getSplashImage()),
                 ReviewMapper.toDtoList(play.getReviews()),
-                ImageMapper.toDtoList(play.getImages()));
+                ImageMapper.toDtoList(play.getImages()),
+                play.isPlayActive());
     }
 
     public static Play toEntity(PlayDto playDto){
