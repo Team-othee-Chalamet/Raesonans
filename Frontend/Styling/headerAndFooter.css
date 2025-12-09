@@ -4,16 +4,22 @@ body {
 
 /* HEADER */
 header {
+
     top: 0;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    background-color: transparent;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0);
+
+
+    position: absolute;
 
     text-align: center;
     font-family: Arial, sans-serif;
+    font-weight: bold;
 
     height: 10vh;
+    min-height: 60px;
     width: 100%;
 
     z-index: 100;
@@ -23,21 +29,17 @@ header {
     }
 }
 
-.logo {
-    height: 100%;
-    align-self: flex-start;
-    margin-left: 5vh;
-    margin-top: 2vh;
+.logo-img {
+    height: 80%;
     cursor: pointer;
+    padding-top: 10%;
 }
 
 .logocontainer {
-    width: 50%;
+    margin-left: 2%;
+    display: flex;
     height: 100%;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
 }
 
 .header-buttons {
@@ -48,6 +50,7 @@ header {
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+
 }
 
 .headerbutton {
@@ -58,6 +61,7 @@ header {
 
     color: rgb(255, 0, 255);
 
+
     transition: 1s;
 }
 
@@ -67,22 +71,25 @@ header {
 
 /* FOOTER */
 footer {
+    height: 230px;
     display: flex;
     flex-direction: column;
-
+    background-color: rgba(0, 0, 0, 0.5);
+    margin-top: -230px;
     width: 100%;
     padding: 0;
-    background: #ad3d97;
     color: white;
     font-family: Arial, sans-serif;
 }
 
 .footer-container {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
 
     height: fit-content;
+
 }
 
 .footer-col {

@@ -8,17 +8,20 @@ import com.example.backend.model.*;
 import com.example.backend.repo.PlayRepo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class PlayService {
 
     private final PlayMapper playMapper;
+    private final PerformanceService performanceService;
     private PlayRepo playRepo;
 
-    public PlayService(PlayRepo playRepo, PlayMapper playMapper){
+    public PlayService(PlayRepo playRepo, PlayMapper playMapper, PerformanceService performanceService){
         this.playRepo = playRepo;
         this.playMapper = playMapper;
+        this.performanceService = performanceService;
     }
 
     public List<PlayPreviewDto> getPlayPreviews(){
