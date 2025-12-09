@@ -50,7 +50,7 @@ public class Play extends BaseEntity {
     //HelperMethods
     public boolean isPlayActive(){
         for (Performance p: performances){
-            if (p.getPeformanceDate().isAfter(LocalDate.now())){
+            if (p.getPerformanceDate().isAfter(LocalDate.now())){
                 return true;
             }
         }
