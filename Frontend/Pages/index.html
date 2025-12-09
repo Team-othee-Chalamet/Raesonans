@@ -4,15 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styling/headerAndFooter.css">
+    <link rel="stylesheet" href="../Styling/frontPage.css">
+    <link rel="stylesheet" href="../Styling/style.css">
     <title>Document</title>
 </head>
 <body>
     <header id="header"></header>
 
-    <div style="height: 500px;"></div>
+    <div class="frontPageSegment">
+        <div class="frontPagePhoto">
+            <img src="../Resources/images/PANA6768.jpg" class="frontPageImage" alt="">
+        </div>
+        <div class="FrontPagetext">
+            <button class="underLinedSimpleButton" id="scrollDownButton">Se forestillinger</button>
+            
+            <div class="frontPageTextParagraphs" id="fontPageParagraph">Hvornår bliver presset til at præstere for stort, når man kun spørger sig selv, hvordan man bliver den bedste? Og hvor kommer forventningen om, at blive den bedste egentlig fra?</div>
+            
+            <div class="frontPageTextTitle" id="ftonrPageTextTitle">NEMT</div>
+        </div>
+    </div>
+
+    <div class="boxWithCoolBackGround">
+        <div class="bgBack" id="bgBack"></div>
+        <div class="bgFront" id="bgFront"></div>
+    </div>
 
     <footer id="footer"></footer>
 
+
+    
+<script type="module" src="../Scripts/background.js"></script>
+<script type="module" src="../scripts/frontPage.js"></script>
 <script type="module" src="../Scripts/header.js"></script>
 </body>
 </html>
