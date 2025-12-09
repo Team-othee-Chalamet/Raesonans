@@ -3,6 +3,7 @@ package com.example.backend.model;
 import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,16 @@ public class Play extends BaseEntity {
         this.images = new ArrayList<>();
         this.performances = new ArrayList<>();
         this.reviews = new ArrayList<>();
+    }
+
+    //HelperMethods
+    public boolean isPlayActive(){
+        for (Performance p: performances){
+            if (p.getPeformanceDate().isAfter(LocalDate.now())){
+                return true;
+            }
+        }
+        return false;
     }
 
     //Getters
