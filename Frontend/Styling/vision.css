@@ -13,6 +13,12 @@ body {
     height: 100vh;
 }
 
+.lowerHalf {
+    color: white;
+    background-color: orange;
+    padding-bottom: 100px;
+}
+
 .box {
     width: 50%;
     display: flex;
@@ -47,6 +53,8 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
+    background-color: transparent;
 
     padding-top: 8vh;
 
