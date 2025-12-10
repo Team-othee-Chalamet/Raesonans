@@ -51,9 +51,16 @@ public class TokenService {
     }
 
     public TokenPairDTO generateTokenPair() {
+        // Generate bytes
         byte[] toHandle = generateTokenBytes();
+
+        // Turn to string
         String clientToken = bytesToString(toHandle);
+
+        // Turn to hashed string
         String hashedToken = hashToken(toHandle);
+
+        // Return both
         return new TokenPairDTO(clientToken, hashedToken);
     }
 

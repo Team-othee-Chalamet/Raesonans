@@ -2,11 +2,12 @@ package com.example.backend.service;
 
 import com.example.backend.dto.*;
 import com.example.backend.model.AppUser;
+import com.example.backend.model.Token;
 import com.example.backend.repo.AppUserRepo;
 import com.example.backend.util.Hasher;
-import org.antlr.v4.runtime.Token;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -42,6 +43,8 @@ public class AuthService {
         TokenPairDTO tokenPair = tokenService.generateTokenPair();
         // Create the response and attach clientToken
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO(tokenPair.clientToken(), userDTO);
+
+        Token token = new Token(foundAppUser, tokenPair.hashedToken(), LocalDateTime.now().plusHours(1));
 
         // TEST: Outcomment all and have it return LoginResponseDTO to check connection
         // LoginResponseDTO loginTestResponse = new LoginResponseDTO("Test", new UserDTO("Test"));
