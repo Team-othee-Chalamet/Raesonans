@@ -2,7 +2,11 @@ package com.example.backend.service;
 
 
 
+import com.example.backend.dto.TokenDTO;
+import com.example.backend.dto.TokenMapper;
 import com.example.backend.dto.TokenPairDTO;
+import com.example.backend.model.Token;
+import com.example.backend.repo.TokenRepo;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -13,11 +17,10 @@ import java.util.Base64;
 @Service
 public class TokenService {
 
-    public static void main(String[] args) {
-        TokenService ts = new TokenService();
-        byte[] bytes = ts.generateTokenBytes();
-        System.out.println(ts.bytesToString(bytes));
-        System.out.println(ts.hashToken(bytes));
+    private final TokenRepo tokenRepo;
+
+    public TokenService(TokenRepo tokenRepo) {
+        this.tokenRepo = tokenRepo;
     }
 
     public byte[] generateTokenBytes(){
@@ -62,6 +65,13 @@ public class TokenService {
 
         // Return both
         return new TokenPairDTO(clientToken, hashedToken);
+    }
+
+    public TokenDTO saveToken(TokenDTO tokenDTO) {
+
+        Token token = TokenMapper.toEntity(tokenDTO);
+
+        return TokenMapper.toDto(tokenRepo.save(token));
     }
 
 }

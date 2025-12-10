@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 public class AuthService {
-    private AppUserRepo appUserRepo;
+    private final AppUserRepo appUserRepo;
     private final TokenService tokenService;
 
     public AuthService(AppUserRepo appUserRepo, TokenService tokenService){
@@ -44,7 +44,9 @@ public class AuthService {
         // Create the response and attach clientToken
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO(tokenPair.clientToken(), userDTO);
 
-        Token token = new Token(foundAppUser, tokenPair.hashedToken(), LocalDateTime.now().plusHours(1));
+        TokenDTO tokenDTO = new TokenDTO(foundAppUser, tokenPair.hashedToken(), LocalDateTime.now().plusHours(1));
+        tokenService.saveToken(tokenDTO);
+
 
         // TEST: Outcomment all and have it return LoginResponseDTO to check connection
         // LoginResponseDTO loginTestResponse = new LoginResponseDTO("Test", new UserDTO("Test"));
