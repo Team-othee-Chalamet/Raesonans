@@ -3,7 +3,11 @@ package com.example.backend.util;
 public class Hasher {
 
     public static void main(String[] args) {
-        System.out.println(hashPassword("qwerty123456!"));
+        int i = 0;
+        String toPrint = "dinmor";
+        while (i < 5) {
+            toPrint = hashPassword(toPrint);
+            System.out.println(toPrint); i++;}
     }
 
     public static String hashPassword(String password) {

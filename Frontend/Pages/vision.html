@@ -5,27 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styling/headerAndFooter.css">
     <link rel="stylesheet" href="../Styling/vision.css">
+    <link rel="stylesheet" href="../Styling/style.css">
     <title>Document</title>
 </head>
 <body>
     
-    
-    <div class="pageTitle">
         <header id="header"></header>
-        <p>Kunstnerisk Vision</p>
+    <div class="screenHalf">
+        <div class="box image"></div>
+        <div class="box">
+            <div class="textContainer">
+            <h1>Vores Vision</h1>
+            <p id="visionText"></p>
+        </div>
+        </div>
     </div>
 
-    <div class="imgAndText">
-        <div class="image"></div>
-        <div class="visionText">Så var det her vi skrulle skrive noget tekst</div>
-    </div>
-    <div class="imgAndText">
-        <div class="visionText">Så var det her vi skrulle skrive noget tekst</div>
-        <div class="image"></div>
+    <div class="screenHalf lowerHalf">
+        <div class="performerBox">
+            <div class="performerImg image"></div>
+            <div class="textContainer">
+                <h1>Jessica</h1>
+                <p id="descriptionJessica"></p>
+            </div>
+        </div>
+
+        <div class="performerBox">
+            <h1>Hvem er vi?</h1>
+            <div class="performerImg image"></div>
+            <div class="textContainer">
+                <h1>Anne Sofie</h1>
+                <p id="descriptionAnneSofie"></p>
+            </div>
+        </div>
+
+        <div class="performerBox">
+            <div class="performerImg image"></div>
+            <div class="textContainer">
+                <h1>Nikolaj</h1>
+                <p id="descriptionNikolaj"></p>
+            </div>
+        </div>
     </div>
 
     <footer id="footer"></footer>
 
 <script type="module" src="../Scripts/header.js"></script>
+<script type="module" src="../Scripts/vision.js"></script>
 </body>
 </html>
