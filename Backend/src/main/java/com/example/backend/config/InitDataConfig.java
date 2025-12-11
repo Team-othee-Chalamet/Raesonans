@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Configuration
+/*@Configuration
 public class InitDataConfig {
 
     @Bean
@@ -65,4 +65,4 @@ public class InitDataConfig {
             }
         };
     }
-}
+}*/

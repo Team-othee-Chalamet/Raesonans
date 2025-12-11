@@ -3,12 +3,15 @@ package com.example.backend.model;
 import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Play extends BaseEntity {
     String title;
+
+    @Column(columnDefinition = "TEXT") //Nødvendig for lange tekster for MySQL
     String description;
 
     @OneToOne
@@ -44,6 +47,16 @@ public class Play extends BaseEntity {
         this.images = new ArrayList<>();
         this.performances = new ArrayList<>();
         this.reviews = new ArrayList<>();
+    }
+
+    //Helper methods
+    public boolean isActive(){
+        for (Performance p: performances){
+            if (p.getPerformanceDate().isAfter(LocalDate.now())){
+                return true;
+            }
+        }
+        return false;
     }
 
     //Getters

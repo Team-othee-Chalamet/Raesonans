@@ -34,7 +34,8 @@ public class PlayMapper {
                 play.getId(),
                 play.getTitle(),
                 play.getDescription(),
-                ImageMapper.toDto(play.getSplashImage()));
+                ImageMapper.toDto(play.getSplashImage()),
+                play.isActive());
     }
 
     public static PlayDto toFullDto(Play play){
@@ -46,7 +47,8 @@ public class PlayMapper {
                 CreditMapper.toDtoList(play.getCredits()),
                 ImageMapper.toDto(play.getSplashImage()),
                 ReviewMapper.toDtoList(play.getReviews()),
-                ImageMapper.toDtoList(play.getImages()));
+                ImageMapper.toDtoList(play.getImages()),
+                play.isActive());
     }
 
     public static Play toEntity(PlayDto playDto){
@@ -66,9 +68,9 @@ public class PlayMapper {
         //NOTE: while not necessary at the moment, this will be nice if we make a
         //  feature letting users create a new play
         //  as they are creating a performance
-        for (PerformanceDto pDto: playDto.performanceDtos()){
+       /* for (PerformanceDto pDto: playDto.performanceDtos()){
             newPlay.addPerformance(PerformanceMapper.toEntity(pDto));
-        }
+        }*/
 
         //We are not adding reviews here, since they are added at a later stage
 

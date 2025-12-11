@@ -1,4 +1,4 @@
-import { get, put, del } from "../Scripts/fetchUtil.js"; // Import the utility functions
+import { fetchAllPlays} from "../API/playApi.js"; // Import the utility functions
 
 const API_URL = "http://localhost:8080/api/plays";
 
@@ -6,12 +6,6 @@ const API_URL = "http://localhost:8080/api/plays";
 // Check if user is logged in (replace with backend check)
 function isLoggedIn() {
     return true; // or false
-}
-
-
-// GET all plays
-async function fetchAllPlays() {
-    return await get(API_URL);
 }
 
 // Update (PUT) a play (only if logged in)
@@ -70,15 +64,12 @@ function renderPlays(plays, gridId) {
 }
 
 
-//Fetch alle aktuelle plays
-async function fetchAktuellePlays() {
-    const plays = await fetchAllPlays();
-    return plays.filter(p => p.isActive === true);
+function filterAktuellePlays(plays) {
+    // filtrere
+    return plays.filter(p => p.isActive === true); 
 }
 
-//Fetch alle forrige plays
-async function fetchTidligerePlays() {
-    const plays = await fetchAllPlays();
+function filterTidligerePlays(plays) {
     return plays.filter(p => p.isActive === false);
 }
 
@@ -86,27 +77,17 @@ async function fetchTidligerePlays() {
 
 // Initialize
 document.addEventListener("DOMContentLoaded", async () => {
+    
+    // 1. Hent ALLE plays EEN gang (Fetch ALL plays ONCE)
+    const allPlays = await fetchAllPlays(); 
+    
+    // 2. Filtrér lokalt (Filter locally)
+    const aktuelleItems = filterAktuellePlays(allPlays);
+    const tidligereItems = filterTidligerePlays(allPlays);
 
-
-    // Hent alle plays
-
-    const aktuelleItems = await fetchAktuellePlays();
-    const tidligereItems = await fetchTidligerePlays();
-
-
-
-
-    // Få alle plays efter dags dato og sæt dem in i aktuelleItems
-
-
+    // 3. Render
     renderPlays(aktuelleItems, "aktuelle-grid");
-
-
-
-    // Få alle plays for dags dato og sæt dem ind i tidligereItems
-
-
     renderPlays(tidligereItems, "tidligere-grid");
-    
-    
 });
+
+

@@ -45,6 +45,7 @@ export async function get(url, headers) {
 
 export async function post(url, body, headers) {
   const options = createFetchOptions("POST", body, headers);
+  console.log(options + "Options Fetchutil")
   const res = await fetch(url, options);
   return responseHandler(res);
 }

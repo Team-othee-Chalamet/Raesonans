@@ -1,14 +1,6 @@
-import { post } from "../Scripts/fetchUtil.js";
-
-const BASE_URL = "http://localhost:8080/api/plays";
+import { createPlay } from "../API/playApi.js";
 
 let credits = []; // lcreddit array
-
-// Create new Play 
-export async function createPlay(BASE_URL, playDto) {
-    return post(BASE_URL, playDto, { "Content-Type": "application/json" });
-}
-
 
 // sørger for man kan klikke på plus knappen og submit knappen
 document.addEventListener("DOMContentLoaded", () => {
@@ -26,11 +18,14 @@ function addCredit() {
     const name = document.getElementById("navn").value;
 
     if (!job || !name) {
-        alert("Udfyld både job og navn");
+        alert("Udfyld både rolle og navn");
         return;
     }
 
-    credits.push({ job, name });
+    credits.push({ 
+        role: job,  
+        name: name
+    });
     
     // clear fields
     document.getElementById("job").value = "";
@@ -49,12 +44,13 @@ async function submitPlay(e) {
         description,
         creditDtos: credits
     };
+    console.log(playDto);
     //Poster
     try {
-        const response = createPlay(BASE_URL, playDto);
+        const response = createPlay(playDto);
         console.log(response);
     } catch (error) {
         console.error("ERROR creating play:", error);
     }
-    window.location.replace("../Pages/play.html")
+    window.location.replace("../Pages/play.html");
 }
