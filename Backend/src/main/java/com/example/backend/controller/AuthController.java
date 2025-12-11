@@ -28,10 +28,10 @@ public class AuthController {
             // Service checks if credentials match
             LoginResponseDTO loginResponseDTO = authService.authenticateLogin(loginRequestDTO);
 
-            // Returns ResponseEntity with mapped key / value pairs for token and employee
+            // Returns ResponseEntity with mapped key / value pairs for token and user
             return ResponseEntity.ok(Map.of(
                     "token", loginResponseDTO.token(),
-                    "employee", loginResponseDTO.userDTO()
+                    "user", loginResponseDTO.userDTO()
             ));
             // If credentials don't match, returns an error message
         } catch (RuntimeException e) {
