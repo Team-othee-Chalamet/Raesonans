@@ -2,6 +2,7 @@ package com.example.backend.model;
 
 import com.example.backend.baseClasses.BaseEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 public class Token extends BaseEntity {
 
     @OneToOne
+    @JoinColumn(name = "app_user_id")
     AppUser appUser;
 
     String token;
