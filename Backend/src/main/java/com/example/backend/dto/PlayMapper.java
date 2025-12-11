@@ -30,12 +30,14 @@ public class PlayMapper {
         return dtos;
     }
 
-    public static PlayPreviewDto toPreviewDto(Play play){
+    public static PlayPreviewDto toPreviewDto(Play play) {
         return new PlayPreviewDto(
                 play.getId(),
                 play.getTitle(),
                 play.getDescription(),
-                ImageMapper.toDto(play.getSplashImage()));
+                ImageMapper.toDto(play.getSplashImage()),
+                play.isPlayActive()
+        );
     }
 
     public static PlayDto toFullDto(Play play){
