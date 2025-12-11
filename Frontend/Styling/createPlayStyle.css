@@ -64,12 +64,13 @@ label {
     margin: 10px 0 4px;
 }
 
-input, textarea {
+input, textarea, select {
     width: 100%;
     border: 1px solid #eee;
     padding: 8px;
     border-radius: 3px;
     font-size: 14px;
+    box-sizing: border-box;
 }
 
 textarea {
@@ -102,6 +103,8 @@ textarea {
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
+    margin-top: 10px;
+    box-sizing: border-box;
 }
 
 /* FOOTER */

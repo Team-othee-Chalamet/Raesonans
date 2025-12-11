@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opret Teaterstykke</title>
+    <link rel="stylesheet" href="../Styling/createPlayStyle.css">
+    <link rel="stylesheet" href="../Styling/headerAndFooter.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header id="header"></header>
+
+<!-- MAIN SECTION -->
+<section class="gradient-bg">
+    
+    <div class="form-card">
+        <form id="createPerformanceForm">
+            
+            <h2>Opret Forestilling</h2>
+
+            <label for="play">TEATERSTYKKE</label>
+            <select id="play" name="play" required>
+                <option value="">Vælg teaterstykke</option>
+            </select>
+
+            <label for="location">STED</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="performance-date">DATO</label>
+            <input type="date" id="performance-date" name="performance-date" required>
+
+            <label for="time">TID</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="ticket-link">BILLET LINK</label>
+            <input type="text" id="ticket-link" name="ticket-link" required>
+
+            <button class="submit-btn" id="submitknap" type="submit">
+                TILFØJ FORESTILLING
+            </button>
+
+        </form>
+    </div>
+</section>
+
+<footer id="footer"></footer>
+<script type="module" src="../Scripts/performanceAdm.js"></script>
+<script type="module" src="../Scripts/header.js"></script>
+</body>
+</html>
