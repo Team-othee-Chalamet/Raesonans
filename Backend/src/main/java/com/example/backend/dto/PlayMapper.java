@@ -84,7 +84,7 @@ public class PlayMapper {
     public static Play toPreviewEntity(PlayPreviewDto playPreviewDto){
         Play newPlay = new Play();
         newPlay.setTitle(playPreviewDto.title());
-        newPlay.setDescription(playPreviewDto.Description());
+        newPlay.setDescription(playPreviewDto.description());
 
         return newPlay;
     }
