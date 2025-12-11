@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PerformanceService {
@@ -17,7 +18,7 @@ public class PerformanceService {
         this.performanceRepo = performanceRepo;
     }
 
-    public List<PerformanceDto> GetAllPerformances(){
+    public List<PerformanceDto> getAllPerformances(){
         List<Performance> foundPerformances = performanceRepo.findAll();
 
         List<PerformanceDto> returnPerformances = new ArrayList<>();
@@ -32,4 +33,37 @@ public class PerformanceService {
 //
 //        return upcomingPerformances;
 //    }
+
+    public PerformanceDto getPerformanceById(Long performanceId) {
+        Optional<Performance> performance = performanceRepo.findById(performanceId);
+        if (performance.isEmpty()) {
+            throw new RuntimeException("Ingen forestilling fundet");
+        }
+        return PerformanceMapper.toDto(performance.get());
+    }
+
+    public PerformanceDto createPerformance(PerformanceDto performanceDto) {
+        Performance performance = PerformanceMapper.toEntity(performanceDto);
+        performance.setId(null);
+        return PerformanceMapper.toDto(performanceRepo.save(performance));
+    }
+
+    public PerformanceDto editPerformance(Long performanceId, PerformanceDto performanceDto) {
+        Optional<Performance> existingPerformance = performanceRepo.findById(performanceId);
+        if (existingPerformance.isPresent()){
+            Performance performance = PerformanceMapper.toEntity(performanceDto);
+            Performance updatedPerformance = existingPerformance.get();
+            updatedPerformance.setPerformanceDate(performance.getPerformanceDate());
+            updatedPerformance.setLocation(performance.getLocation());
+            updatedPerformance.setPlay(performance.getPlay());
+            updatedPerformance.setTime(performance.getTime());
+            return PerformanceMapper.toDto(performanceRepo.save(updatedPerformance));
+        }
+
+        throw new RuntimeException("Ingen forestilling fundet");
+    }
+
+    public void deletePerformance(Long performanceId) {
+        performanceRepo.deleteById(performanceId);
+    }
 }

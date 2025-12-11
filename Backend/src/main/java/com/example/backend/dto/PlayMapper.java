@@ -1,6 +1,7 @@
 package com.example.backend.dto;
 
 import com.example.backend.model.Play;
+import com.example.backend.service.PlayService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -34,8 +35,7 @@ public class PlayMapper {
                 play.getId(),
                 play.getTitle(),
                 play.getDescription(),
-                ImageMapper.toDto(play.getSplashImage()),
-                play.isActive());
+                ImageMapper.toDto(play.getSplashImage()));
     }
 
     public static PlayDto toFullDto(Play play){
@@ -48,7 +48,7 @@ public class PlayMapper {
                 ImageMapper.toDto(play.getSplashImage()),
                 ReviewMapper.toDtoList(play.getReviews()),
                 ImageMapper.toDtoList(play.getImages()),
-                play.isActive());
+                play.isPlayActive());
     }
 
     public static Play toEntity(PlayDto playDto){
@@ -68,9 +68,9 @@ public class PlayMapper {
         //NOTE: while not necessary at the moment, this will be nice if we make a
         //  feature letting users create a new play
         //  as they are creating a performance
-       /* for (PerformanceDto pDto: playDto.performanceDtos()){
+        for (PerformanceDto pDto: playDto.performanceDtos()){
             newPlay.addPerformance(PerformanceMapper.toEntity(pDto));
-        }*/
+        }
 
         //We are not adding reviews here, since they are added at a later stage
 

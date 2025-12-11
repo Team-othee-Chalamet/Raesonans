@@ -49,8 +49,8 @@ public class Play extends BaseEntity {
         this.reviews = new ArrayList<>();
     }
 
-    //Helper methods
-    public boolean isActive(){
+    //HelperMethods
+    public boolean isPlayActive(){
         for (Performance p: performances){
             if (p.getPerformanceDate().isAfter(LocalDate.now())){
                 return true;

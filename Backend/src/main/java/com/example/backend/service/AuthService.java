@@ -1,22 +1,23 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.LoginMapper;
-import com.example.backend.dto.LoginRequestDTO;
-import com.example.backend.dto.LoginResponseDTO;
-import com.example.backend.dto.UserDTO;
+import com.example.backend.dto.*;
 import com.example.backend.model.AppUser;
+import com.example.backend.model.Token;
 import com.example.backend.repo.AppUserRepo;
 import com.example.backend.util.Hasher;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
 public class AuthService {
-    AppUserRepo appUserRepo;
+    private final AppUserRepo appUserRepo;
+    private final TokenService tokenService;
 
-    public AuthService(AppUserRepo appUserRepo){
+    public AuthService(AppUserRepo appUserRepo, TokenService tokenService){
         this.appUserRepo = appUserRepo;
+        this.tokenService = tokenService;
     }
 
     public LoginResponseDTO authenticateLogin(LoginRequestDTO loginRequestDTO) {
@@ -35,17 +36,26 @@ public class AuthService {
         if(!Hasher.hashPassword(password).equals(foundAppUser.getPassword())) {
             throw new RuntimeException("Username and password does not match");
         }
-        //Turn employee into a DTO
+
+        //Turn user into a DTO
         UserDTO userDTO = LoginMapper.toUserDto(foundAppUser);
-        // Generate a (simple "fake") token
-        String returnToken = TokenService.generateToken();
-        // Create the response and return it
-        LoginResponseDTO loginResponseDTO = new LoginResponseDTO(returnToken, userDTO);
+        // Generate a token pair
+        TokenPairDTO tokenPair = tokenService.generateTokenPair();
+        // Create the response and attach clientToken
+        LoginResponseDTO loginResponseDTO = new LoginResponseDTO(tokenPair.clientToken(), userDTO);
+
+        TokenDTO tokenDTO = new TokenDTO(foundAppUser, tokenPair.hashedToken(), LocalDateTime.now().plusHours(1));
+        tokenService.saveToken(tokenDTO);
+
 
         // TEST: Outcomment all and have it return LoginResponseDTO to check connection
         // LoginResponseDTO loginTestResponse = new LoginResponseDTO("Test", new UserDTO("Test"));
 
-
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
         return loginResponseDTO;
     }
 }

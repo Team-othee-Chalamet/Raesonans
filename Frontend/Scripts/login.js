@@ -3,6 +3,8 @@ console.log("login.js loaded");
 //Wait for DOM to load
 document.addEventListener("DOMContentLoaded", initApp);
 
+document.addEventListener("mousemove", changeBackgroundColor);
+
 //Import post function
 import { post } from "../Scripts/fetchUtil.js"
 
@@ -26,6 +28,8 @@ async function handleLogin(event) {
         password: event.target.password.value
     };
     
+    document.body.style.cursor = 'wait';
+
     try {
         const response = await post("http://localhost:8080/api/auth/login", body);
         console.log("Login successful:", response);
@@ -35,7 +39,27 @@ async function handleLogin(event) {
         window.location.href = "createPlay.html";
     } catch (error) {
         event.target.password.value = "";
+        document.body.style.cursor = 'default';
         console.error("Login failed:", error.message);
         alert("Forkert adgangskode eller brugernavn.");
     }
 }
+
+function changeBackgroundColor(event) {
+        const background = document.getElementsByClassName("main")[0];
+
+        const width = window.innerWidth;
+        const height = window.innerHeight
+
+        const mouseY = event.clientY;
+        const mouseX = event.clientX;
+
+        console.log("x:" + mouseX);
+        console.log("y:" + mouseY);
+
+        const red = mouseX/width * 150 + 50;
+        const green = mouseY/width * 150 + 50;
+        const blue = mouseY/height * 150 + 50;
+
+        background.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    }
