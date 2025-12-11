@@ -19,8 +19,12 @@ public class PerformanceController {
 
     @GetMapping
     public ResponseEntity<List<PerformanceDto>> getAllPerformances() {
-        System.out.println(performanceService.getAllPerformances());
         return ResponseEntity.ok(performanceService.getAllPerformances());
+    }
+
+    @GetMapping("/next")
+    public ResponseEntity<List<PerformanceDto>> get5NextPerformances() {
+        return ResponseEntity.ok(performanceService.GetNext5Performances());
     }
 
     @GetMapping("/{id}")

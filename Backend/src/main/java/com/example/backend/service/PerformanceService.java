@@ -8,9 +8,11 @@ import com.example.backend.repo.PerformanceRepo;
 import com.example.backend.repo.PlayRepo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PerformanceService {
@@ -33,10 +35,14 @@ public class PerformanceService {
         return returnPerformances;
     }
 
-//    public List<Performance> GetNext5Performances(){
-//
-//        return upcomingPerformances;
-//    }
+    public List<PerformanceDto> GetNext5Performances(){
+        LocalDate today = LocalDate.now();
+
+        List<Performance> upcomingEvents = performanceRepo.findByPerformanceDateAfter(today);
+        upcomingEvents.sort(null);
+
+        return PerformanceMapper.toDtoList(upcomingEvents.stream().limit(5).toList());
+    }
 
     public PerformanceDto getPerformanceById(Long performanceId) {
         Optional<Performance> performance = performanceRepo.findById(performanceId);
