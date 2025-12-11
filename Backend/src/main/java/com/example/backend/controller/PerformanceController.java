@@ -1,7 +1,11 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.AppUserDTO;
 import com.example.backend.dto.PerformanceDto;
+import com.example.backend.model.AppUser;
+import com.example.backend.service.AuthService;
 import com.example.backend.service.PerformanceService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +16,19 @@ import java.util.List;
 @RequestMapping("/api/performances")
 public class PerformanceController {
     private final PerformanceService performanceService;
+    private final AuthService authService;
 
-    public PerformanceController(PerformanceService performanceService) {
+    public PerformanceController(PerformanceService performanceService, AuthService authService) {
         this.performanceService = performanceService;
+        this.authService = authService;
+    }
+
+    @ModelAttribute
+    //Before any request in the EmployeeController, it checks the token and sets currentUser based on the token
+    public void validateToken(@RequestHeader("Authorization") String authHeader, HttpServletRequest httpRequest) {
+        System.out.println("Validating token");
+        AppUserDTO requestingUser = authService.validateToken(authHeader);
+        httpRequest.setAttribute("currentUser", requestingUser);
     }
 
     @GetMapping

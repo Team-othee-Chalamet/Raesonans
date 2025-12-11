@@ -28,7 +28,7 @@ public class AuthController {
             // Returns ResponseEntity with mapped key / value pairs for token and user
             return ResponseEntity.ok(Map.of(
                     "token", loginResponseDTO.token(),
-                    "user", loginResponseDTO.userDTO()
+                    "user", loginResponseDTO.appUserDTO()
             ));
             // If credentials don't match, returns an error message
         } catch (RuntimeException e) {

@@ -78,4 +78,7 @@ public class TokenService {
         return TokenMapper.toDto(tokenRepo.save(token));
     }
 
+    public Token getTokenById(Long id) {
+        return tokenRepo.getById(id);
+    }
 }

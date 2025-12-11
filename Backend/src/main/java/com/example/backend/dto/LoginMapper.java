@@ -4,8 +4,8 @@ import com.example.backend.model.AppUser;
 
 public class LoginMapper {
 
-    static public UserDTO toUserDto(AppUser appUser) {
-        return new UserDTO(appUser.getUsername());
+    static public AppUserDTO toUserDto(AppUser appUser) {
+        return new AppUserDTO(appUser.getId(), appUser.getUsername());
     }
 
 }

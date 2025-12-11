@@ -7,7 +7,6 @@ import com.example.backend.repo.AppUserRepo;
 import com.example.backend.repo.TokenRepo;
 import com.example.backend.util.Hasher;
 import jakarta.transaction.Transactional;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -43,13 +42,13 @@ public class AuthService {
         }
 
         //Turn user into a DTO
-        UserDTO userDTO = LoginMapper.toUserDto(foundAppUser);
+        AppUserDTO appUserDTO = LoginMapper.toUserDto(foundAppUser);
         // Generate a token pair
         TokenPairDTO tokenPair = tokenService.generateTokenPair();
         // Create the response and attach clientToken
-        LoginResponseDTO loginResponseDTO = new LoginResponseDTO(tokenPair.clientToken(), userDTO);
+        LoginResponseDTO loginResponseDTO = new LoginResponseDTO(tokenPair.clientToken(), appUserDTO);
 
-        TokenDTO tokenDTO = new TokenDTO(foundAppUser, tokenPair.hashedToken(), LocalDateTime.now().plusMinutes(31));
+        TokenDTO tokenDTO = new TokenDTO(null, foundAppUser, tokenPair.hashedToken(), LocalDateTime.now().plusMinutes(31));
         tokenService.saveToken(tokenDTO);
 
 
@@ -66,7 +65,7 @@ public class AuthService {
 
     // Transactional allows for updates - setting expirations i method updates expiration in DB
     @Transactional
-    public AppUser validateToken(String authHeader) {
+    public AppUserDTO validateToken(String authHeader) {
 
         // Bearer is added in fetchUtil (frontend)
         if (authHeader == null || !authHeader.startsWith("Bearer")) {
@@ -96,6 +95,7 @@ public class AuthService {
         // Update expiration
         foundToken.get().setExpiration(LocalDateTime.now().plusMinutes(31));
 
-        return tokenDTO.appUser();
+        AppUserDTO toReturn = new AppUserDTO(tokenDTO.appUser().getId(), tokenDTO.appUser().getUsername());
+        return toReturn;
     }
 }
