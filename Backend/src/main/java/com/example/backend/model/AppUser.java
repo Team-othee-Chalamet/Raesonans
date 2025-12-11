@@ -1,10 +1,14 @@
 package com.example.backend.model;
 
 import com.example.backend.baseClasses.BaseEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class AppUser extends BaseEntity {
+    @OneToOne(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    Token token;
     String username;
     String password;
 
