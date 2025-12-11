@@ -3,7 +3,9 @@ package com.example.backend.service;
 import com.example.backend.dto.PerformanceDto;
 import com.example.backend.dto.PerformanceMapper;
 import com.example.backend.model.Performance;
+import com.example.backend.model.Play;
 import com.example.backend.repo.PerformanceRepo;
+import com.example.backend.repo.PlayRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,9 +15,11 @@ import java.util.Optional;
 @Service
 public class PerformanceService {
     private final PerformanceRepo performanceRepo;
+    private final PlayRepo playRepo;
 
-    public PerformanceService(PerformanceRepo performanceRepo) {
+    public PerformanceService(PerformanceRepo performanceRepo, PlayRepo playRepo) {
         this.performanceRepo = performanceRepo;
+        this.playRepo = playRepo;
     }
 
     public List<PerformanceDto> getAllPerformances(){
@@ -45,6 +49,8 @@ public class PerformanceService {
     public PerformanceDto createPerformance(PerformanceDto performanceDto) {
         Performance performance = PerformanceMapper.toEntity(performanceDto);
         performance.setId(null);
+        Play play = playRepo.findById(performanceDto.playPreviewDto().id()).orElseThrow(() -> new RuntimeException("Forestilling ikke fundet."));
+        performance.setPlay(play);
         return PerformanceMapper.toDto(performanceRepo.save(performance));
     }
 

@@ -27,7 +27,6 @@ public class PerformanceMapper {
         performance.setLocation(performanceDto.location());
         performance.setPerformanceDate(performanceDto.performanceDate());
         performance.setTime(performanceDto.time());
-        performance.setPlay(PlayMapper.toPreviewEntity(performanceDto.playPreviewDto()));
         return performance;
     }
 }

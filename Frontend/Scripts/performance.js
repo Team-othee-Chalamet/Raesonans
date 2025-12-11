@@ -27,6 +27,8 @@ function renderPerformances(performance, container) {
         <p class="performance-location">${performance.location}</p>
     </div>
 
+    <div class="divider"></div>
+
     <div class="performance-date">
         <span class="day">${day}</span>
         <span class="month">${month}</span>
@@ -34,18 +36,23 @@ function renderPerformances(performance, container) {
     </div>
     </div>
 
-    <button class="toggle-btn">⬇</button>
-    <div class="performance-details">
+    <button class="toggle-btn" aria-expanded="false">⬇</button>
+    <div class="performance-details" aria-hidden="true">
         <p>${performance.playPreviewDto.description}</p>
-        <a href="${performance.ticketLink}" class="ticket-btn">Køb Billetter</button>
+        <a href="${performance.ticketLink}" class="ticket-btn">Køb Billetter</a>
     </div>
     
     `;
 
     const toggleBtn = performanceCard.querySelector(".toggle-btn");
-        toggleBtn.addEventListener("click", () => {
-            performanceCard.classList.toggle("expanded");
-        });
+    const details = performanceCard.querySelector(".performance-details");
+
+    toggleBtn.addEventListener("click", () => {
+        const isExpanded = performanceCard.classList.toggle("expanded");
+        // opdatér accessibility attributes
+        toggleBtn.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+        details.setAttribute("aria-hidden", isExpanded ? "false" : "true");
+    });
 
     container.appendChild(performanceCard);
 

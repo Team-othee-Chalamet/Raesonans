@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Performances</title>
     <script type="module" src="../Scripts/performance.js"></script>
-    <link rel="stylesheet" href="../Styling/performanceStyle.css">
-    <link rel="stylesheet" href="../Styling/headerAndFooter.css">
-
-</head>
-<body>
-
+    <link rel="stylesheet" href="../Styling/performanceStyle.css" />
+    <link rel="stylesheet" href="../Styling/headerAndFooter.css" />
+    <link rel="stylesheet" href="../Styling/style.css" />
+  </head>
+  <body>
     <header id="header"></header>
 
-    <main>
-        <h1>Forestillinger</h1>
+    <div class="boxWithCoolBackGround">
+      <div class="headFiller"></div> <!-- INCLUDE IF THE BG BOX GOES TO THE TOP -->
+      <div class="bgBack" id="bgBack"></div>
+      <div class="bgFront" id="bgFront"></div>
 
-        <div id="performance-container"></div>
-    </main>
+      <!-- YOUR THINGS GO HERE -->
+       <h1>Forestillinger</h1>
+      <div id="performance-container"></div>
+      <!-- YOUR THINGS GO HERE -->
 
-    <footer id="footer"></footer>  
+      <div class="footFiller"></div> <!-- INCLUDE IF THE BG BOX GOES TO THE BOTTOM -->
+    </div>
 
-<script type="module" src="../Scripts/header.js"></script>
-</body>
+    <footer id="footer"></footer>
+
+    <script type="module" src="../Scripts/header.js"></script>
+    <script type="module" src="../Scripts/background.js"></script>
+  </body>
 </html>
