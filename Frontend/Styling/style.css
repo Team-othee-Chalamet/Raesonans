@@ -4,21 +4,27 @@ body {
 }
 
 .boxWithCoolBackGround {
-  z-index: -3;
   top: 0;
   position: relative;
   width: 100vw;
-  height: 200vh;
+  min-height: 100vh;
+  height: fit-content;
 }
 
 .bgBack {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  z-index: -10;
   width: 100%;
   height: 100%;
   background: #00ff26; /* bottom/base color (blue) */
-  position: absolute;
+  
 }
 
 .bgFront {
+  pointer-events: none;
+  z-index: -10;
   content: "";
   position: absolute;
   inset: 0;
@@ -39,4 +45,16 @@ body {
 
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+}
+
+.footFiller{
+  display: flex;
+  height: 250px;
+  width: 100%;
+}
+
+.headFiller{
+  display: flex;
+  height: 100px;
+  width: 100%;
 }
