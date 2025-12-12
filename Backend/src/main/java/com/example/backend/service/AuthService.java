@@ -82,20 +82,29 @@ public class AuthService {
         if (!foundToken.isPresent()) {
             throw new RuntimeException("Could not find token");
         }
-        // Turn into DTO
-        TokenDTO tokenDTO = TokenMapper.toDto(foundToken.get());
 
-        // Delete if token has expired or expires in more than 31 minutes - in which case it is a mistake
-        if (tokenDTO.expiration().isBefore(LocalDateTime.now()) ||
-                tokenDTO.expiration().isAfter(LocalDateTime.now().plusMinutes(31))) {
-            tokenRepo.delete(foundToken.get());
+        Token token = foundToken.get();
+
+        if (token.getExpiration().isBefore(LocalDateTime.now()) ||
+                token.getExpiration().isAfter(LocalDateTime.now().plusMinutes(31))) {
+            tokenRepo.delete(token);
             throw new RuntimeException("Token has expired");
         }
 
-        // Update expiration
-        foundToken.get().setExpiration(LocalDateTime.now().plusMinutes(31));
+//        // Turn into DTO
+//        TokenDTO tokenDTO = TokenMapper.toDto(foundToken.get());
+//
+//        // Delete if token has expired or expires in more than 31 minutes - in which case it is a mistake
+//        if (tokenDTO.expiration().isBefore(LocalDateTime.now()) ||
+//                tokenDTO.expiration().isAfter(LocalDateTime.now().plusMinutes(31))) {
+//            tokenRepo.delete(foundToken.get());
+//            throw new RuntimeException("Token has expired");
+//        }
 
-        AppUserDTO toReturn = new AppUserDTO(tokenDTO.appUser().getId(), tokenDTO.appUser().getUsername());
+        // Update expiration
+        token.setExpiration(LocalDateTime.now().plusMinutes(31));
+
+        AppUserDTO toReturn = new AppUserDTO(token.getAppUser().getId(), token.getAppUser().getUsername());
         return toReturn;
     }
 }

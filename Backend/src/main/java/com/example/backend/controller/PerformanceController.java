@@ -24,7 +24,7 @@ public class PerformanceController {
     }
 
     @ModelAttribute
-    //Before any request in the EmployeeController, it checks the token and sets currentUser based on the token
+    //Before any request in the PerformanceController, it checks the token and sets currentUser based on the token
     public void validateToken(@RequestHeader("Authorization") String authHeader, HttpServletRequest httpRequest) {
         System.out.println("Validating token");
         AppUserDTO requestingUser = authService.validateToken(authHeader);
