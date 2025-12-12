@@ -34,6 +34,8 @@ public class InitDataConfig {
                 hamlet.setTitle("Hamlet");
                 Play macbeth = new Play();
                 macbeth.setTitle("Macbeth");
+                Play nemt = new Play();
+                nemt.setTitle("Nemt");
 
                 playRepository.saveAll(List.of(hamlet, macbeth));
 

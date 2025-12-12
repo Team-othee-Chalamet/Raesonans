@@ -8,7 +8,7 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Image extends BaseEntity {
-    String imagePath;
+    String imageUrl;
     Boolean galleryVis;
     Boolean frontPageVis;
 
@@ -21,8 +21,8 @@ public class Image extends BaseEntity {
 
     //Constructor
 
-    public Image(String imagePath, Boolean galleryVis, Boolean frontPageVis) {
-        this.imagePath = imagePath;
+    public Image(String imageUrl, Boolean galleryVis, Boolean frontPageVis) {
+        this.imageUrl = imageUrl;
         this.galleryVis = galleryVis;
         this.frontPageVis = frontPageVis;
     }
@@ -33,7 +33,7 @@ public class Image extends BaseEntity {
 
 
     public String getImagePath() {
-        return imagePath;
+        return imageUrl;
     }
 
     public Boolean getGalleryVis() {
@@ -48,8 +48,8 @@ public class Image extends BaseEntity {
 
     //Setters
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setImagePath(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public void setGalleryVis(Boolean galleryVis) {
