@@ -31,9 +31,14 @@ public class InitPlayData2 implements CommandLineRunner {
         p3.setTitle("The Importance of Being Earnest");
         p3.setDescription("Oscar Wilde’s witty comedy of mistaken identities.");
 
+        Play p4 = new Play();
+        p2.setTitle("Nemt");
+        p2.setDescription("Fuck det nemt mand.");
+
         playRepository.save(p1);
         playRepository.save(p2);
         playRepository.save(p3);
+        playRepository.save(p4);
 
         System.out.println("✔ Dummy Play data initialized with CommandLineRunner.");
     }

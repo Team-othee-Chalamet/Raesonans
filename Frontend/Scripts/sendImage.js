@@ -16,9 +16,16 @@ function initApp(){
             console.log("Hello")
 
             const file = document.getElementById("file").files[0];
+
+            const formInfo = new FormData(event.target);
+
             const additionalInfo = {
-                "detail": "Mikkel har sat denne ind"
+                "galleryVis": formInfo.get("galleryVis") === "on",
+                "playTitle": formInfo.get("playDropDown"),
+                "setSplash": formInfo.get("setSplash") === "on"
             }
+
+            console.log(additionalInfo);
 
             const formData = new FormData();
 
