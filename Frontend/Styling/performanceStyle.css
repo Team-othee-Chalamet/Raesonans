@@ -1,6 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    color: #e649b4;
+    margin-top: 5px;
+}
+
+#performance-container{
+    z-index: 100;
+}
+
+#upcoming-performance-container{
+    z-index: 100;
+}
+
 .performance-card {
+    z-index: 10000;
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 
     max-width: 900px; 
@@ -33,6 +53,10 @@
     border-radius: 8px;
 }
 
+.performance-info {
+    flex: 1;
+}
+
 .divider {
     width: 1px;
     height: 70px;
@@ -43,7 +67,7 @@
 /* Dato højre */
 .performance-date {
     margin-left: auto;
-    text-align: right;
+    text-align: left;
     display: flex;
     flex-direction: column;
     align-items: flex-end;  /* holder teksten højrejusteret */
@@ -105,4 +129,15 @@
 
 .performance-card.expanded .performance-details {
     opacity: 1;
+}
+
+.ticket-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #e649b4;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 15px;
 }

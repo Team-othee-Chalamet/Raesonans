@@ -9,8 +9,74 @@ async function initApp() {
 }
 
 async function setUpEventListeners() {
-    const form = document.querySelector('#createPerformanceForm');
-    form.addEventListener('submit', savePerformance);
+    const createForm = document.querySelector('#createPerformanceForm');
+    createForm.addEventListener('submit', savePerformance);
+    const openModal = document.querySelector("#show-modal");
+    openModal.addEventListener("click", showModal);
+    const closeModal = document.querySelector("#close-modal");
+    closeModal.addEventListener("click", hideModal);
+    const updateForm = document.querySelector("#performance-form");
+    updateForm.addEventListener("submit", handleFormSubmit);
+}
+
+function showModal() {
+    const modal = document.querySelector("#modal");
+    modal.classList.remove("hidden");
+}
+
+function hideModal() {
+    const modal = document.querySelector("#modal");
+    modal.classList.add("hidden");
+
+    const form = document.querySelector("#product-form");
+    form.reset();
+}
+
+async function handlePerformanceClick(event) {
+    const target = event.target;
+
+    if (target.classList.contains("update-btn")) {
+        const card = target.closest(".performance-card");
+        const performanceId = card.getAttribute("performanceId");
+
+        const performanceToUpdate = {
+            performanceId: performanceId,
+            play: card.querySelector(".performance-title").textContent,
+            location: card.querySelector(".performance-location").textContent,
+            performanceDate: card.querySelector(".performance-date").textContent,
+            time: card.querySelector(".performance-time").textContent,
+            ticketLink: card.querySelector(".ticket-link").href
+        }
+        fillPerformanceForm(performanceToUpdate);
+        showModal();
+    }
+    else if (target.classList.contains("delete-btn")) {
+        const card = target.closest(".performance-card");
+        const performanceId = card.getAttribute("performanceId");
+        await deletePerformance(performanceId);
+    }
+    await reloadAndRender();
+    
+}
+
+async function handleFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const performance = {
+        playPreviewDto: { id: Number(formData.get("play")) },
+        location: formData.get("location"),
+        performanceDate: formData.get("performance-date"),
+        time: formData.get("time"),
+        ticketLink: formData.get("ticket-link")
+    }
+    const performanceId = formData.get("performanceId")
+    await updatePerformance(performanceId, performance);
+
+    form.reset();
+    hideModal();
+    await reloadAndRender();
 }
 
 async function savePerformance(event) {
@@ -41,3 +107,11 @@ async function loadPlays() {
     });
 }
 
+async function fillPerformanceForm(performance) {
+    document.querySelector("#play").value = performance.play;
+    document.querySelector("#location").value = performance.location;
+    document.querySelector("#performance-date").value = performance.performanceDate;
+    document.querySelector("#time").value = performance.time;
+    document.querySelector("#ticket-link").value = performance.ticketLink;
+    
+}

@@ -22,7 +22,7 @@ public class PerformanceController {
         return ResponseEntity.ok(performanceService.getAllPerformances());
     }
 
-    @GetMapping("/next")
+    @GetMapping("/upcoming")
     public ResponseEntity<List<PerformanceDto>> get5NextPerformances() {
         return ResponseEntity.ok(performanceService.GetNext5Performances());
     }

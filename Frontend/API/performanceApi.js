@@ -7,6 +7,10 @@ export async function getPerformances() {
     return await get(PERFORMANCE_URL);
 }
 
+export async function getUpcomingPerformances() {
+    return await get(`${PERFORMANCE_URL}/upcoming`);
+}
+
 export async function createPerformance(performance) {
     return await post(PERFORMANCE_URL, performance);
 }
