@@ -1,6 +1,7 @@
 import { createPlay } from "../API/playApi.js";
 
 let credits = []; // lcreddit array
+let reviews = [];
 
 // sørger for man kan klikke på plus knappen og submit knappen
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //kalder metoder når knapperne bliver klikket
     plusBtn.addEventListener("click", addCredit);
+    addReviewBtn.addEventListener("click", addReview);
     form.addEventListener("submit", submitPlay);
 });
 
@@ -26,10 +28,42 @@ function addCredit() {
         role: job,  
         name: name
     });
-    
+    console.log(credits);
     // clear fields
     document.getElementById("job").value = "";
     document.getElementById("navn").value = "";
+}
+// Tilføjer et review
+function addReview() {
+    const title = document.getElementById("reviewTitle").value;
+    const actualScore = document.getElementById("actualScore").value;
+    const maxScore = document.getElementById("maxScore").value;
+    const reviewText = document.getElementById("reviewText").value;
+    const sourceLink = document.getElementById("sourceLink").value;
+
+    // Simpel validering (kræver mindst en titel og score)
+    if (!title || !actualScore) {
+        alert("Udfyld venligst mindst Titel og Score.");
+        return;
+    }
+
+    reviews.push({
+        title: title,
+        actualScore: actualScore, 
+        maxScore: maxScore || 6,  // Default til 6 hvis tom
+        reviewText: reviewText,
+        sourceLink: sourceLink
+    });
+
+    console.log("Reviews added:", reviews);
+    alert(`Tilføjede anmeldelse: ${title}`);
+
+    // Clear fields
+    document.getElementById("reviewTitle").value = "";
+    document.getElementById("actualScore").value = "";
+    document.getElementById("maxScore").value = "";
+    document.getElementById("reviewText").value = "";
+    document.getElementById("sourceLink").value = "";
 }
 
 // Submit form poster en play
@@ -42,7 +76,8 @@ async function submitPlay(e) {
     const playDto = {
         title,
         description,
-        creditDtos: credits
+        creditDtos: credits,
+        reviewDtos: reviews
     };
     console.log(playDto);
     //Poster
@@ -52,5 +87,5 @@ async function submitPlay(e) {
     } catch (error) {
         console.error("ERROR creating play:", error);
     }
-    window.location.replace("../Pages/play.html");
+  //  window.location.replace("../Pages/play.html");
 }

@@ -66,14 +66,22 @@ public class PlayMapper {
             System.out.println("Added a credit");
         }
 
+        if (playDto.reviewDtos() != null) {
+            for (ReviewDto rDto : playDto.reviewDtos()) {
+
+                // 2. Brug din helper metode 'addReview' til at sætte relationen
+                newPlay.addReview(ReviewMapper.toEntity(rDto));
+            }
+        }
+
         //Adding performances using Synchronizing features
         //NOTE: while not necessary at the moment, this will be nice if we make a
         //  feature letting users create a new play
         //  as they are creating a performance
-        for (PerformanceDto pDto: playDto.performanceDtos()){
+       /* for (PerformanceDto pDto: playDto.performanceDtos()){
             newPlay.addPerformance(PerformanceMapper.toEntity(pDto));
         }
-
+*/
         //We are not adding reviews here, since they are added at a later stage
 
         //We are not adding images here, as that is done at a later stage

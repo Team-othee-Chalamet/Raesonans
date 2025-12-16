@@ -1,120 +1,136 @@
+/* --- STRUCTURAL CSS (To be placed in your main style.css) --- */
+html, body {
+    height: 100%; 
+    margin: 0; 
+    padding: 0; 
+}
+
 body {
-    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    
     font-family: Arial, sans-serif;
-    background: #fafafa;
-    color: #222;
+    /* Changed to dark background temporarily to clearly see white content blocks */
+    background: #fafafa; 
+    color: #222; 
 }
 
-h1, h2, h3 {
-    margin: 0 0 10px;
-}
+/* 1. Header and Banner */
+/* The header is styled externally (position: absolute) */
 
-a {
-    color: #d4008f;
-    text-decoration: none;
-}
-
-.container {
-    max-width: 1300px;
-    margin: 30px auto;
-    gap: 30px;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-}
-
-/* HERO IMAGE */
-.hero {
-    position: relative;
+#banner {
+    position:absolute;
     width: 100%;
-    height: 230px;
+    height: 250px; 
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #4CAF50;
+    margin-bottom: 10px; 
+    margin-top: 60px;
     overflow: hidden;
+    
 }
 
-.hero img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero h1 {
+#change-image-button {
     position: absolute;
     bottom: 20px;
     left: 40px;
-    color: white;
-    font-size: 48px;
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-/* LEFT COLUMN */
-.left-col {
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #eee;
-}
-
-/* MIDDLE COLUMN */
-.middle-col .section {
-    background: #fff;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    border: 1px solid #eee;
-}
-
-.middle-col ul {
-    padding-left: 18px;
-}
-
-/* Credits layout */
-.credits {
+/* 2. Main Content Container (3 Columns) */
+.container {
+    padding: 0 40px;
+    
+    flex-grow: 1;
+    
     display: grid;
-    grid-template-columns: 150px auto;
-    row-gap: 8px;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 30px; 
+
+    padding-top: 290px;
+    
+    padding-bottom: 250px; 
 }
 
-/* RIGHT COLUMN */
-.right-col {
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #eee;
-    height: fit-content;
+/* 3. Column Styling */
+.left-col, .right-col {
+    padding: 20px 0;
 }
 
-.review-card {
+/* Left Column Boxes */
+.left-col section, #infoBox {
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
     padding: 15px;
     margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.stars {
-    color: gold;
-    font-size: 20px;
+/* Middle Column Wrapper */
+#middleContentWrapper {
+    background: #fff; 
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+/* Middle Column Content Blocks */
+.content-block {
+    padding-bottom: 15px; 
+    margin-bottom: 15px; 
+    border-bottom: 1px solid #eee; 
+}
+
+.content-block.content-last {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Right Column Review Boxes */
+#reviewsContainer > div { 
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* --- Review Star Styling --- */
+.star-rating {
+    font-size: 1.5em; /* Make the stars larger */
     margin-bottom: 10px;
 }
 
-.review-source {
-    font-size: 14px;
-    color: #666;
-    margin-top: 8px;
+.star-rating .full-star {
+    color: gold; /* Full stars */
 }
 
-/* RESPONSIVE */
-@media (max-width: 1000px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-    .right-col {
-        order: 3;
-    }
-    .left-col {
-        order: 1;
-    }
-    .middle-col {
-        order: 2;
-    }
+.star-rating .empty-star {
+    color: #ccc; /* Empty stars */
+}
+/* --- Credits List Styling --- */
+.credit-list-style {
+    list-style: none; /* Removes the bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.credit-list-style li {
+    margin-bottom: 8px; /* Space between people */
+    border-bottom: 1px solid #f0f0f0; /* Optional: A faint line between rows */
+    padding-bottom: 4px;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+/* The Role (e.g., "Instruktør:") */
+.credit-role {
+    font-weight: bold;
+    color: #333;
+    display: block; /* Makes the role sit on its own line if space is tight, or use 'inline' to keep same line */
+}
+
+/* The Name (e.g., "Peter Jackson") */
+.credit-name {
+    color: #555;
 }

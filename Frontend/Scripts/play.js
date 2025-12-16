@@ -73,6 +73,35 @@ function filterTidligerePlays(plays) {
     return plays.filter(p => p.isActive === false);
 }
 
+function renderAdminButton() {
+    // 1. Tjek om logget ind
+    if (!isLoggedIn()) return;
+
+    // 2. Find containeren hvor knappen skal bo (boxWithCoolBackGround)
+    const mainContainer = document.querySelector(".boxWithCoolBackGround");
+    if (!mainContainer) return;
+
+    // 3. Lav container til knappen (for at centrere den)
+    const btnContainer = document.createElement("div");
+    btnContainer.classList.add("admin-btn-container");
+
+    // 4. Lav selve knappen
+    const btn = document.createElement("button");
+    btn.textContent = "+ Opret Ny Forestilling";
+    btn.classList.add("create-play-btn");
+
+    // 5. Link til createPlay.html
+    btn.addEventListener("click", () => {
+        window.location.href = "createPlay.html";
+    });
+
+    // 6. Indsæt i DOM
+    btnContainer.appendChild(btn);
+    
+    // "prepend" indsætter den som det FØRSTE barn i containeren
+    // (før "Aktuelle" sektionen)
+    mainContainer.prepend(btnContainer);
+}
 
 
 // Initialize
@@ -88,6 +117,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 3. Render
     renderPlays(aktuelleItems, "aktuelle-grid");
     renderPlays(tidligereItems, "tidligere-grid");
+
+    //render admin knap hvis logget ind
+    renderAdminButton();
+
 });
 
 
