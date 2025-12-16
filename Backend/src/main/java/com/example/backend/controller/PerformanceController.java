@@ -23,13 +23,13 @@ public class PerformanceController {
         this.authService = authService;
     }
 
-    @ModelAttribute
-    //Before any request in the PerformanceController, it checks the token and sets currentUser based on the token
-    public void validateToken(@RequestHeader("Authorization") String authHeader, HttpServletRequest httpRequest) {
-        System.out.println("Validating token");
-        AppUserDTO requestingUser = authService.validateToken(authHeader);
-        httpRequest.setAttribute("currentUser", requestingUser);
-    }
+//    @ModelAttribute
+//    //Before any request in the PerformanceController, it checks the token and sets currentUser based on the token
+//    public void validateToken(@RequestHeader("Authorization") String authHeader, HttpServletRequest httpRequest) {
+//        System.out.println("Validating token");
+//        AppUserDTO requestingUser = authService.validateToken(authHeader);
+//        httpRequest.setAttribute("currentUser", requestingUser);
+//    }
 
     @GetMapping
     public ResponseEntity<List<PerformanceDto>> getAllPerformances() {

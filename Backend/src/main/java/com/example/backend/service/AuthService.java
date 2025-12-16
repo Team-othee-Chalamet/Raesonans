@@ -65,11 +65,11 @@ public class AuthService {
 
     // Transactional allows for updates - setting expirations i method updates expiration in DB
     @Transactional
-    public AppUserDTO validateToken(String authHeader) {
+    public boolean validateToken(String authHeader) {
 
         // Bearer is added in fetchUtil (frontend)
-        if (authHeader == null || !authHeader.startsWith("Bearer")) {
-            throw new RuntimeException("Invalid or missing token");
+        if (authHeader == null || authHeader.isBlank() || !authHeader.startsWith("Bearer")) {
+            return false;
         }
 
         // Turn token to bytes, then to hashed string, as token in repo is the hashed string
@@ -80,7 +80,7 @@ public class AuthService {
         // Find the token
         Optional<Token> foundToken = tokenRepo.findByToken(tokenString);
         if (!foundToken.isPresent()) {
-            throw new RuntimeException("Could not find token");
+            return false;
         }
 
         Token token = foundToken.get();
@@ -88,23 +88,12 @@ public class AuthService {
         if (token.getExpiration().isBefore(LocalDateTime.now()) ||
                 token.getExpiration().isAfter(LocalDateTime.now().plusMinutes(31))) {
             tokenRepo.delete(token);
-            throw new RuntimeException("Token has expired");
+            return false;
         }
-
-//        // Turn into DTO
-//        TokenDTO tokenDTO = TokenMapper.toDto(foundToken.get());
-//
-//        // Delete if token has expired or expires in more than 31 minutes - in which case it is a mistake
-//        if (tokenDTO.expiration().isBefore(LocalDateTime.now()) ||
-//                tokenDTO.expiration().isAfter(LocalDateTime.now().plusMinutes(31))) {
-//            tokenRepo.delete(foundToken.get());
-//            throw new RuntimeException("Token has expired");
-//        }
 
         // Update expiration
         token.setExpiration(LocalDateTime.now().plusMinutes(31));
 
-        AppUserDTO toReturn = new AppUserDTO(token.getAppUser().getId(), token.getAppUser().getUsername());
-        return toReturn;
+        return true;
     }
 }
