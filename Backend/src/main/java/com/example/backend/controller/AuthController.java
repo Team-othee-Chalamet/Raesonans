@@ -5,10 +5,7 @@ import com.example.backend.dto.LoginRequestDTO;
 import com.example.backend.dto.LoginResponseDTO;
 import com.example.backend.service.AuthService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -31,9 +28,18 @@ public class AuthController {
             // Returns ResponseEntity with mapped key / value pairs for token and user
             return ResponseEntity.ok(Map.of(
                     "token", loginResponseDTO.token(),
-                    "user", loginResponseDTO.userDTO()
+                    "isAdmin", "true"
             ));
             // If credentials don't match, returns an error message
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(401).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/validateToken")
+    public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String authHeader) {
+        try {
+            return ResponseEntity.ok(authService.validateToken(authHeader));
         } catch (RuntimeException e) {
             return ResponseEntity.status(401).body(e.getMessage());
         }

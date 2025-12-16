@@ -1,6 +1,12 @@
 // Method to build fetch type
 function createFetchOptions(httpMethod, body, headers = {}) {
     
+    //Get token from localStorage, if it exists, add to headers
+    const token = localStorage.getItem("token");
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+
     // buildes options obj
   const options = {
     method: httpMethod,
