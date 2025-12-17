@@ -28,6 +28,7 @@ function addCredit() {
         role: job,  
         name: name
     });
+    alert(`Tilføjede credit: ${job + " " + name}`);
     console.log(credits);
     // clear fields
     document.getElementById("job").value = "";

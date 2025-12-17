@@ -87,7 +87,7 @@ function renderAdminButton() {
 
     // 4. Lav selve knappen
     const btn = document.createElement("button");
-    btn.textContent = "+ Opret Ny Forestilling";
+    btn.textContent = "+ Opret Nyt Teaterstykke";
     btn.classList.add("create-play-btn");
 
     // 5. Link til createPlay.html
