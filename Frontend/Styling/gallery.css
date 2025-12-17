@@ -1,15 +1,62 @@
-.images{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+.images {
+    padding: 100px 20px;           /* smaller horizontal padding is typical */
+    
     width: 100%;
-    margin-top: 100px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 50px;
+    justify-items: center;         /* center each card inside its column */
+}
+.imageCard {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 100%;                   /* fills the grid column */
+    max-width: 300px;              /* ensure card won't exceed 300px */
+    
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.558);
+
+    .imageForm{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+
+        .input{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    transition: .4s;
 }
 
-.imageCard{
-    display: flex;
-    background-color: white;
-    max-width: 50px;
-    max-height: 50px;
+.imageCard:hover{
+    transform: scale(105%);
+}
+
+.imgPreviewBox {
+    position: relative;
+    top: -10px;
+    width: 110%;
+    aspect-ratio: 1 / 1;    /* force square */
+    overflow: hidden;
+}
+
+.imgPreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* fill square & crop long axis */
+    object-position: center;
 }
