@@ -1,5 +1,6 @@
 package com.example.backend.config;
 
+import com.example.backend.model.Image;
 import com.example.backend.model.Play;
 import com.example.backend.repo.PlayRepo;
 import org.springframework.boot.CommandLineRunner;
@@ -34,6 +35,10 @@ public class InitPlayData2 implements CommandLineRunner {
         Play p4 = new Play();
         p2.setTitle("Nemt");
         p2.setDescription("Fuck det nemt mand.");
+
+        Image image = new Image("/api/images/atv-flat-design-vector-2597015131.jpg", true, true);
+
+        p4.addImage(image);
 
         playRepository.save(p1);
         playRepository.save(p2);
