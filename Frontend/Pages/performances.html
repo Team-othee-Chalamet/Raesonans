@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Performances</title>
-    <script type="module" src="../Scripts/performance.js"></script>
     <link rel="stylesheet" href="../Styling/performanceStyle.css" />
     <link rel="stylesheet" href="../Styling/headerAndFooter.css" />
     <link rel="stylesheet" href="../Styling/style.css" />
@@ -19,7 +18,38 @@
 
       <!-- YOUR THINGS GO HERE -->
        <h1>Forestillinger</h1>
+          <!-- Modal which is a popup form -->
+        <div id="modal" class="modal hidden">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <h2>Opdater forestilling</h2>
+                <form id="performance-form">
+                    <input type="hidden" id="id" name="id" />
+                    <label for="play">TEATERSTYKKE</label>
+                    <select id="play" name="play" required>
+                    <option value="">Vælg teaterstykke</option>
+                    </select>  
+
+                    <label for="location">STED</label>  
+                    <input type="text" id="location" name="location" required/>     
+                    
+                    <label for="performance-date">DATO</label>
+                    <input type="date" id="performance-date" name="performance-date" required/>
+
+                    <label for="time">TID</label>
+                    <input type="time" id="time" name="time" required/>
+
+                    <label for="ticket-link">BILLET LINK</label>
+                    <input type="text" id="ticket-link" name="ticket-link" required/>
+                    <button type="submit" class="submit-btn">Gem</button>
+                </form>
+            </div>
+         </div> 
+
+
       <div id="performance-container"></div>
+
+      <a href="./createPerformance.html" class="add-performance-btn">Tilføj en forestilling</a>
       <!-- YOUR THINGS GO HERE -->
 
       <div class="footFiller"></div> <!-- INCLUDE IF THE BG BOX GOES TO THE BOTTOM -->
@@ -27,6 +57,7 @@
 
     <footer id="footer"></footer>
 
+    <script type="module" src="../Scripts/performance.js"></script>
     <script type="module" src="../Scripts/header.js"></script>
     <script type="module" src="../Scripts/background.js"></script>
   </body>
