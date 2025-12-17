@@ -88,5 +88,5 @@ async function submitPlay(e) {
     } catch (error) {
         console.error("ERROR creating play:", error);
     }
-  //  window.location.replace("../Pages/play.html");
+    window.location.replace("../Pages/play.html");
 }
