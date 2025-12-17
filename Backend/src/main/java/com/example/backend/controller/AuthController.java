@@ -44,4 +44,10 @@ public class AuthController {
             return ResponseEntity.status(401).body(e.getMessage());
         }
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@RequestHeader("Authorization") String authHeader) {
+        authService.logOut(authHeader);
+        return ResponseEntity.ok().build();
+    }
 }
