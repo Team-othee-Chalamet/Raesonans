@@ -36,7 +36,6 @@ body {
 
 /* GRADIENT SECTION */
 .gradient-bg {
-    background: linear-gradient(to bottom, #ffd36b, #e665a0, #d461c1);
     padding: 80px 0 140px;
     display: flex;
     justify-content: center;

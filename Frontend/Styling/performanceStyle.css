@@ -131,16 +131,42 @@ h1 {
     opacity: 1;
 }
 
-.ticket-link {
-    display: inline-block;
+.ticket-link, .add-performance-btn, .edit-button, .delete-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     padding: 10px 20px;
     background: #e649b4;
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    margin-top: 15px;
+    cursor: pointer;
+
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: normal;
+
+    appearance: none;
+    -webkit-appearance: none;
 }
+
+.ticket-link:hover,
+.edit-button:hover,
+.delete-button:hover,
+.add-performance-btn:hover {
+    background: #d13fa2;
+}
+
+.add-performance-btn {
+    display: block;
+    width: fit-content;
+    margin: 40px auto 0 auto;
+}
+    
 
 /* Modal background */
 .modal {

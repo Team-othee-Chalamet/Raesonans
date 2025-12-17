@@ -1,7 +1,9 @@
 import { fetchAllPlays } from '../API/playApi.js';
-import { getPerformances, createPerformance, updatePerformance, deletePerformance, getUpcomingPerformances } from '../API/performanceApi.js';
+import { getPerformances, updatePerformance, deletePerformance, getUpcomingPerformances } from '../API/performanceApi.js';
 
 window.addEventListener('DOMContentLoaded', initApp);
+
+const isAdmin = localStorage.getItem("isAdmin");
 
 function initApp() {
     reloadAndRender();
@@ -54,10 +56,11 @@ function renderPerformances(performance, container) {
     <div class="performance-details" aria-hidden="true">
         <p>${performance.playPreviewDto.description}</p>
         <a href="${performance.ticketLink}" class="ticket-link">Køb Billetter</a>
+        
+        ${isAdmin === 'true' ? `
         <button class="edit-button">Rediger</button>
-        <button class="delete-button">Slet</button>
+        <button class="delete-button">Slet</button>`: ''} 
     </div>
-    
     `;
 
     const toggleBtn = performanceCard.querySelector(".toggle-btn");
@@ -74,53 +77,6 @@ function renderPerformances(performance, container) {
 
 }
 
-function renderUpcomingPerformances(performance, indexContainer) {
-    const performanceCard = document.createElement("div");
-    performanceCard.className = "performance-card";
-    const { day, month } = formatDate(performance);
-
-    performanceCard.setAttribute("id", performance.id);
-
-    // ${performance.playPreviewDto.splashImg} for image source when available
-    performanceCard.innerHTML = `
-    <div class="performance-top">
-        <img src="null" class="performance-image" />
-
-    <div class="performance-info">
-        <h3 class="performance-title">${performance.playPreviewDto.title}</h3>
-        <p class="performance-location">${performance.location}</p>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="performance-date">
-        <span class="day">${day}</span>
-        <span class="month">${month}</span>
-        <span class="time">${performance.time}</span>
-    </div>
-    </div>
-
-    <button class="toggle-btn" aria-expanded="false">⬇</button>
-    <div class="performance-details" aria-hidden="true">
-        <p>${performance.playPreviewDto.description}</p>
-        <a href="${performance.ticketLink}" class="ticket-link">Køb Billetter</a>
-    </div>
-    
-    `;
-
-    const toggleBtn = performanceCard.querySelector(".toggle-btn");
-    const details = performanceCard.querySelector(".performance-details");
-
-    toggleBtn.addEventListener("click", () => {
-        const isExpanded = performanceCard.classList.toggle("expanded");
-        // opdatér accessibility attributes
-        toggleBtn.setAttribute("aria-expanded", isExpanded ? "true" : "false");
-        details.setAttribute("aria-hidden", isExpanded ? "false" : "true");
-    });
-
-    indexContainer.appendChild(performanceCard);
-
-}
 
 function formatDate(performance) {
     const date = new Date(performance.performanceDate);
@@ -132,12 +88,8 @@ function formatDate(performance) {
 }
 
 async function setUpEventListeners() {
-    //const createForm = document.querySelector('#createPerformanceForm');
-    //createForm.addEventListener('submit', savePerformance);
     const performanceContainer = document.querySelector('#performance-container');
     performanceContainer.addEventListener('click', handlePerformanceClick);
-    const openModal = document.querySelector("#show-modal");
-    openModal.addEventListener("click", showModal);
     const closeModal = document.querySelector("#close-modal");
     closeModal.addEventListener("click", hideModal);
     const updateForm = document.querySelector("#performance-form");
@@ -208,22 +160,6 @@ async function handleFormSubmit(event) {
     await reloadAndRender();
 }
 
-async function savePerformance(event) {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
-
-    const performance = {
-        playPreviewDto: { id: Number(formData.get("play")) },
-        location: formData.get("location"),
-        performanceDate: formData.get("performance-date"),
-        time: formData.get("time"),
-        ticketLink: formData.get("ticket-link")
-    }
-    await createPerformance(performance);
-    form.reset();
-
-}
 
 async function loadPlays() {
     const plays = await fetchAllPlays();
