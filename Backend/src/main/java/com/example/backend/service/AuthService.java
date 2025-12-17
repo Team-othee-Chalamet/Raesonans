@@ -24,6 +24,7 @@ public class AuthService {
         this.tokenRepo = tokenRepo;
     }
 
+    @Transactional
     public LoginResponseDTO authenticateLogin(LoginRequestDTO loginRequestDTO) {
         System.out.println("AuthService: authenticateLogin");
         String username = loginRequestDTO.username();
@@ -41,6 +42,12 @@ public class AuthService {
             throw new RuntimeException("Username and password does not match");
         }
 
+        // If user has a token already, delete it
+        Optional<Token> optionalToken = tokenRepo.findByAppUser(foundAppUser);
+        if (optionalToken.isPresent()) {
+            tokenRepo.deleteByAppUser(foundAppUser);
+        }
+
         //Turn user into a DTO
         AppUserDTO appUserDTO = LoginMapper.toUserDto(foundAppUser);
         // Generate a token pair
@@ -49,6 +56,7 @@ public class AuthService {
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO(tokenPair.clientToken(), appUserDTO);
 
         TokenDTO tokenDTO = new TokenDTO(null, foundAppUser, tokenPair.hashedToken(), LocalDateTime.now().plusMinutes(31));
+        System.out.println("Trying to save new token");
         tokenService.saveToken(tokenDTO);
 
 
@@ -95,5 +103,27 @@ public class AuthService {
         token.setExpiration(LocalDateTime.now().plusMinutes(31));
 
         return true;
+    }
+
+    public void logOut(String authHeader) {
+        // Bearer is added in fetchUtil (frontend)
+        if (authHeader == null || authHeader.isBlank() || !authHeader.startsWith("Bearer")) {
+            return;
+        }
+
+        // Turn token to bytes, then to hashed string, as token in repo is the hashed string
+        String tokenString = authHeader.replace("Bearer ", "");
+        byte[] tokenBytes = tokenService.stringToBytes(tokenString);
+        tokenString = tokenService.hashToken(tokenBytes);
+
+        // Find the token
+        Optional<Token> foundToken = tokenRepo.findByToken(tokenString);
+        if (!foundToken.isPresent()) {
+            return;
+        }
+
+        Token token = foundToken.get();
+
+        tokenRepo.delete(token);
     }
 }

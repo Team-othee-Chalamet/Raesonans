@@ -7,7 +7,7 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class AppUser extends BaseEntity {
-    @OneToOne(mappedBy = "appUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "appUser", optional = true, cascade = CascadeType.ALL, orphanRemoval = true)
     Token token;
     String username;
     String password;

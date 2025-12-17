@@ -23,9 +23,9 @@ public class InitUserConfig {
 
             if (appUserRepo.count() == 0) {
                 AppUser Peter = new AppUser("peter", Hasher.hashPassword("test"));
-                AppUser Frederik = new AppUser("Frederik", "Test");
-                AppUser Sarah = new AppUser("Sarah", "Test");
-                AppUser Mikkel = new AppUser("Mikkel", "Test");
+                AppUser Frederik = new AppUser("frederik", Hasher.hashPassword("test"));
+                AppUser Sarah = new AppUser("sarah", Hasher.hashPassword("test"));
+                AppUser Mikkel = new AppUser("mikkel", Hasher.hashPassword("test"));
 
                 appUserRepo.saveAll(List.of(Peter, Frederik, Sarah, Mikkel));
             }

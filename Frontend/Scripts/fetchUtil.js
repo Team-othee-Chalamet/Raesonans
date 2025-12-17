@@ -31,6 +31,13 @@ async function responseHandler(res) {
     return null;
   }
 
+  // 401 unautorized
+  if (res.status === 401) {
+    console.log("401");
+    window.location.href = "login.html";
+    return;
+  }
+
   if (!res.ok) {
     throw new Error("HTTP error. status: " + res.status);
   }

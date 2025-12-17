@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class Token extends BaseEntity {
 
     @OneToOne
-    @JoinColumn(name = "app_user_id")
+    @JoinColumn(name = "app_user_id", nullable = false, unique = true)
     AppUser appUser;
 
     String token;
