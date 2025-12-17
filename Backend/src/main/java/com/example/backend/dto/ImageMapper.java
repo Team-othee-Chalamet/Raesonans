@@ -21,6 +21,9 @@ public class ImageMapper {
     }
 
     public static ImageDto toDto(Image image){
+        if (image == null){
+            return null;
+        }
         return new ImageDto(image.getGalleryVis(), image.getFrontPageVis(), image.getPlay().getTitle(), image.getImagePath());
     }
 

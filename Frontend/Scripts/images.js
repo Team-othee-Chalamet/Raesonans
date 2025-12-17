@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", (event) => initApp(event));
 const listOfTitles = [
         "nemt",
         "støj"
-    
 ]
 
 async function initApp(event){
@@ -20,6 +19,8 @@ async function initApp(event){
 
 async function getInfo(){
     //Get list of titles from the backend and set the list.
+    const plays = await get("http://127.0.0.1:8080/api/plays");
+    console.log(plays);
 }
 
 function renderImageCard(imageDto){
@@ -40,6 +41,7 @@ function renderImageCard(imageDto){
 
 function addInfoToCard(imageDto, card){
     card.getElementById("imgPreview").src = "http://127.0.0.1:8080/api" + imageDto.url;
+    card.getElementById("imgTitle").innerHTML = imageDto.url;
 
     return card;
 }
