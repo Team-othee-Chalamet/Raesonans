@@ -1,11 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    color: #e649b4;
+    margin-top: 5px;
+}
+
 #performance-container{
+    z-index: 100;
+    width: 100%;
+}
+
+#upcoming-performance-container{
     z-index: 100;
 }
 
 .performance-card {
     z-index: 10000;
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 
     max-width: 900px; 
@@ -38,6 +54,10 @@
     border-radius: 8px;
 }
 
+.performance-info {
+    flex: 1;
+}
+
 .divider {
     width: 1px;
     height: 70px;
@@ -48,7 +68,7 @@
 /* Dato højre */
 .performance-date {
     margin-left: auto;
-    text-align: right;
+    text-align: left;
     display: flex;
     flex-direction: column;
     align-items: flex-end;  /* holder teksten højrejusteret */
@@ -110,4 +130,126 @@
 
 .performance-card.expanded .performance-details {
     opacity: 1;
+}
+
+.ticket-link, .add-performance-btn, .edit-button, .delete-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 20px;
+    background: #e649b4;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: normal;
+
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.ticket-link:hover,
+.edit-button:hover,
+.delete-button:hover,
+.add-performance-btn:hover {
+    background: #d13fa2;
+}
+
+.add-performance-btn {
+    display: block;
+    width: fit-content;
+    margin: 40px auto 0 auto;
+}
+    
+
+/* Modal background */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+}
+
+/* Hidden by default */
+.hidden {
+  display: none;
+}
+
+/* Modal box */
+.modal-content {
+  background: #fff;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Close button */
+.close {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Small fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.performance-form {
+    width: 420px;
+    background: white;
+    padding: 35px;
+    border-radius: 6px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+}
+
+.form-card h2 {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+/* INPUTS */
+label {
+    display: block;
+    font-size: 11px;
+    margin: 10px 0 4px;
+}
+
+input, select {
+    width: 100%;
+    border: 1px solid #eee;
+    padding: 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    width: 100%;
+    background: #ff59c7;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    box-sizing: border-box;
 }

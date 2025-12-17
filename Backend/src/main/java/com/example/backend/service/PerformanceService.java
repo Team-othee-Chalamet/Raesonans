@@ -8,9 +8,11 @@ import com.example.backend.repo.PerformanceRepo;
 import com.example.backend.repo.PlayRepo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PerformanceService {
@@ -33,10 +35,14 @@ public class PerformanceService {
         return returnPerformances;
     }
 
-//    public List<Performance> GetNext5Performances(){
-//
-//        return upcomingPerformances;
-//    }
+    public List<PerformanceDto> GetNext5Performances(){
+        LocalDate today = LocalDate.now();
+
+        List<Performance> upcomingEvents = performanceRepo.findByPerformanceDateAfter(today);
+        upcomingEvents.sort(null);
+
+        return PerformanceMapper.toDtoList(upcomingEvents.stream().limit(5).toList());
+    }
 
     public PerformanceDto getPerformanceById(Long performanceId) {
         Optional<Performance> performance = performanceRepo.findById(performanceId);
@@ -61,7 +67,8 @@ public class PerformanceService {
             Performance updatedPerformance = existingPerformance.get();
             updatedPerformance.setPerformanceDate(performance.getPerformanceDate());
             updatedPerformance.setLocation(performance.getLocation());
-            updatedPerformance.setPlay(performance.getPlay());
+            Play play = playRepo.findById(performanceDto.playPreviewDto().id()).orElseThrow(() -> new RuntimeException("Forestilling ikke fundet."));
+            updatedPerformance.setPlay(play);
             updatedPerformance.setTime(performance.getTime());
             return PerformanceMapper.toDto(performanceRepo.save(updatedPerformance));
         }
