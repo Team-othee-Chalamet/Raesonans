@@ -31,19 +31,7 @@ body .boxWithCoolBackGround {
 /* --- PAGE 2: FORM VIEW (createPlay.html) --- */
 /* This section handles the new page */
 
-.gradient-bg {
-    flex: 1 0 auto; /* Pushes footer down */
-    width: 100%;
-    
-    /* Layout to center the form */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Aligns to top so we can add padding */
-    
-    padding-top: 140px; /* Space for the Header */
-    padding-bottom: 40vh; /* Space for the Footer */
-    box-sizing: border-box;
-}
+
 
 .form-card {
     background: white;

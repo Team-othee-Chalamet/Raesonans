@@ -9,21 +9,25 @@ function initApp() {
     reloadAndRender();
     loadPlays();
     setUpEventListeners();
+    if (isAdmin === 'true') {
+        document.getElementById("adminButton").removeAttribute("hidden");
+    }
+}
+
+async function setUpEventListeners() {
+    const performanceContainer = document.querySelector('#performance-container');
+    performanceContainer.addEventListener('click', handlePerformanceClick);
+    const closeModal = document.querySelector("#close-modal");
+    closeModal.addEventListener("click", hideModal);
+    const updateForm = document.querySelector("#performance-form");
+    updateForm.addEventListener("submit", handleFormSubmit);
 }
 
 async function reloadAndRender() {
     const container = document.querySelector("#performance-container");
     container.innerHTML = "";
-    if (container) {
-        const performances = await getPerformances();
-        performances.forEach(performance => renderPerformances(performance, container));
-    }
-
-    const indexContainer = document.querySelector("#upcoming-performance-container");
-    if (indexContainer) {
-        const upcomingPerformance = await getUpcomingPerformances();
-        upcomingPerformance.forEach(performance => renderUpcomingPerformances(performance, indexContainer));
-    }
+    const performances = await getPerformances();
+    performances.forEach(performance => renderPerformances(performance, container));
 }
 
 function renderPerformances(performance, container) {
@@ -68,7 +72,6 @@ function renderPerformances(performance, container) {
 
     toggleBtn.addEventListener("click", () => {
         const isExpanded = performanceCard.classList.toggle("expanded");
-        // opdatér accessibility attributes
         toggleBtn.setAttribute("aria-expanded", isExpanded ? "true" : "false");
         details.setAttribute("aria-hidden", isExpanded ? "false" : "true");
     });
@@ -80,21 +83,12 @@ function renderPerformances(performance, container) {
 
 function formatDate(performance) {
     const date = new Date(performance.performanceDate);
-
     const day = date.getDate();
     const month = date.toLocaleString('dk-DK', { month: 'short' });
 
     return { day, month };
 }
 
-async function setUpEventListeners() {
-    const performanceContainer = document.querySelector('#performance-container');
-    performanceContainer.addEventListener('click', handlePerformanceClick);
-    const closeModal = document.querySelector("#close-modal");
-    closeModal.addEventListener("click", hideModal);
-    const updateForm = document.querySelector("#performance-form");
-    updateForm.addEventListener("submit", handleFormSubmit);
-}
 
 function showModal() {
     const modal = document.querySelector("#modal");
