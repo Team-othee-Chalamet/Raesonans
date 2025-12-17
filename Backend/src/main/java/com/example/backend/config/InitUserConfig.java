@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import java.util.List;
 
-/*@Configuration
+@Configuration
 public class InitUserConfig {
 
     @Bean
@@ -31,4 +31,4 @@ public class InitUserConfig {
             }
         };
     }
-}*/
+}

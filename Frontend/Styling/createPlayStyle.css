@@ -34,8 +34,6 @@ body .boxWithCoolBackGround {
 .gradient-bg {
     flex: 1 0 auto; /* Pushes footer down */
     width: 100%;
-    /* A nice gradient background */
-    background: linear-gradient(135deg, #ffd36b 0%, #e665a0 50%, #6a3dad 100%);
     
     /* Layout to center the form */
     display: flex;
@@ -75,7 +73,7 @@ form label {
     letter-spacing: 0.5px;
 }
 
-form input[type="text"],
+form input,
 form textarea,
 form select {
     width: 100%;
