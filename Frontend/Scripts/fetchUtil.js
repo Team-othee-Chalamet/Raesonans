@@ -18,9 +18,13 @@ function createFetchOptions(httpMethod, body, headers = {}) {
 
   // Not all requests require a body, hence the if statement
   if (body) {
-    // Converts the object to a JSON string
+    if (body instanceof FormData){
+      options.body = body;
+    }else{
+      // Converts the object to a JSON string
     options.body = JSON.stringify(body);
     options.headers["Content-Type"] = "application/json";
+    }
   }
   return options;
 }
@@ -59,6 +63,12 @@ export async function get(url, headers) {
 export async function post(url, body, headers) {
   const options = createFetchOptions("POST", body, headers);
   console.log(options + "Options Fetchutil")
+  const res = await fetch(url, options);
+  return responseHandler(res);
+}
+
+export async function postImage(url, body, headers) {
+  const options = createFetchOptions("POST", body, headers, true);
   const res = await fetch(url, options);
   return responseHandler(res);
 }

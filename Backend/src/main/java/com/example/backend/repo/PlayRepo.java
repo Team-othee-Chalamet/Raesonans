@@ -4,4 +4,5 @@ import com.example.backend.model.Play;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlayRepo extends JpaRepository<Play,Long> {
+    Play getByTitle(String title);
 }

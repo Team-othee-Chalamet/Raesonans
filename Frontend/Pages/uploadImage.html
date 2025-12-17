@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../Styling/style.css" />
+    <link rel="stylesheet" href="../Styling/forms.css" />
+    <link rel="stylesheet" href="../Styling/headerAndFooter.css" />
+  </head>
+  <body>
+    <header id="header"></header>
+
+    <div class="boxWithCoolBackGround">
+        <div class="headFiller"></div>
+      <div class="bgBack" id="bgBack"></div>
+      <div class="bgFront" id="bgFront"></div>
+
+      <!-- YOUR THINGS GO HERE -->
+      <div class="form-container">
+        <form action="submit" id="form" class="form-card">
+          <input type="file" name="file" id="file" />
+          <br />
+          Skal dette billede vises i galleriet?<input
+            name="galleryVis"
+            id="galleryVis"
+            type="checkbox"
+          />
+          <br />
+          Skal dette tilføjes til et teaterstykke med det samme?<select
+            name="playDropDown"
+            id="playDropDown"
+          >
+            <option value="none">vælg teaterstykke</option>
+            <option value="nemt">NEMT</option>
+            <option value="støj">Støj</option>
+          </select>
+          <br />
+          Skal dette billede sættes som splash image til den pågældende
+          forestilling?
+          <input type="checkbox" name="setSplash" id="setSplash" />
+          <br />
+          <button type="submit" id="saveImageButton">send</button>
+        </form>
+      </div>
+      <!-- YOUR THINGS GO HERE -->
+
+      <div class="footFiller"></div>
+      <!-- INCLUDE IF THE BG BOX GOES TO THE BOTTOM -->
+    </div>
+
+    <footer id="footer"></footer>
+
+    <script type="module" src="../Scripts/header.js"></script>
+    <script type="module" src="../Scripts/background.js"></script>
+    <script type="module" src="../Scripts/sendImage.js"></script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Styling/headerAndFooter.css" />
+    <link rel="stylesheet" href="../Styling/style.css" />
+    <link rel="stylesheet" href="../Styling/gallery.css" />
+    <link rel="stylesheet" href="../Styling/forms" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header id="header"></header>
+
+    <div class="boxWithCoolBackGround">
+      <div class="bgBack" id="bgBack"></div>
+      <div class="bgFront" id="bgFront"></div>
+
+      <!-- YOUR THINGS GO HERE -->
+
+<!-- The plan:
+      Update this to use templates, then use JAVAscript to clone
+      the element and dynamically render the list of images instead
+      of creating a ton of elements automatically. -->
+      <template id="cardTemplate">
+        <div class="imageCard" id="imageCard">
+          <div class="imgPreviewBox" id="imgPreviewBox">
+            <img
+              class="imgPreview"
+              src="../Resources/images/IMG_20250909_204118.jpg"
+              alt=""
+              id="imgPreview"
+            />
+          </div>
+          <form action="submit" class="imageForm" id="cardForm">
+            <h4 id="imgTitle">imageTitle</h4>
+
+            <input type="hidden" id="imageID">
+
+            <div class="input dropDown" id="inputDropDown">
+              TeaterStykke
+              <select name="playDropDown" id="playDropDown">
+                <option value="none">vælg teaterstykke</option>
+                <option value="nemt">NEMT</option>
+                <option value="støj">Støj</option>
+              </select>
+            </div>
+
+            <div class="input" id="GalInput">Vis i galleriet? <input type="checkbox" id="galInputBox" /></div>
+
+            <div class="input" id="splashInput">
+              Sæt til splash Image? <input type="checkbox" id="splashInputBox"/>
+            </div>
+
+            <button class="button" type="submit" id="gemButton">Gem</button>
+          </form>
+        </div>
+      </template>
+      <div class="images" id="images">
+        
+      </div>
+
+      <a href="uploadImage.html" class="button">tilføj billede</a>
+      <!-- YOUR THINGS GO HERE -->
+
+      <div class="footFiller"></div>
+      <!-- INCLUDE IF THE BG BOX GOES TO THE BOTTOM -->
+    </div>
+
+    <footer id="footer"></footer>
+    <script type="module" src="../Scripts/header.js"></script>
+    <script type="module" src="../Scripts/images.js"></script>
+  </body>
+</html>
