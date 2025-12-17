@@ -28,6 +28,7 @@ function addCredit() {
         role: job,  
         name: name
     });
+    alert(`Tilføjede credit: ${job + " " + name}`);
     console.log(credits);
     // clear fields
     document.getElementById("job").value = "";
@@ -87,5 +88,5 @@ async function submitPlay(e) {
     } catch (error) {
         console.error("ERROR creating play:", error);
     }
-  //  window.location.replace("../Pages/play.html");
+    window.location.replace("../Pages/play.html");
 }

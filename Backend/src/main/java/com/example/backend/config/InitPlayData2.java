@@ -1,4 +1,4 @@
-package com.example.backend.config;
+/*package com.example.backend.config;
 
 import com.example.backend.model.Image;
 import com.example.backend.model.Play;
@@ -48,3 +48,4 @@ public class InitPlayData2 implements CommandLineRunner {
 //        System.out.println("✔ Dummy Play data initialized with CommandLineRunner.");
     }
 }
+*/
