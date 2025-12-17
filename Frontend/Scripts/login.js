@@ -16,6 +16,7 @@ function initApp(){
 function initLogin() {
     //Remove token if one exists (navigating to login page always logs you out)
     localStorage.removeItem("token");
+    localStorage.removeItem("isAdmin");
     const form = document.getElementById("loginForm")
     form.addEventListener("submit", handleLogin);
 }
@@ -35,8 +36,10 @@ async function handleLogin(event) {
         console.log("Login successful:", response);
         //Store the token in localStorage
         localStorage.setItem("token", response.token);
+        //Set isAdmin true
+        localStorage.setItem("isAdmin", response.isAdmin);
         //Redirect to landing page
-        window.location.href = "createPlay.html";
+        window.location.href = "createPerformance.html";
     } catch (error) {
         event.target.password.value = "";
         document.body.style.cursor = 'default';
@@ -53,9 +56,6 @@ function changeBackgroundColor(event) {
 
         const mouseY = event.clientY;
         const mouseX = event.clientX;
-
-        console.log("x:" + mouseX);
-        console.log("y:" + mouseY);
 
         const red = mouseX/width * 150 + 50;
         const green = mouseY/width * 150 + 50;
