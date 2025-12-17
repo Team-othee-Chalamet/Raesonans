@@ -3,13 +3,13 @@
 *::after { box-sizing: border-box; }
 
 .images {
-    padding: 100px 20px;           /* smaller horizontal padding is typical */
+    padding: 50px 20px;           /* smaller horizontal padding is typical */
     
     width: 100%;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
     justify-items: center;         /* center each card inside its column */
 }
 .imageCard {
@@ -42,6 +42,32 @@
     transition: .4s;
 }
 
+.pageShowerDiv{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+
+    .pageShower{
+        display: flex;
+        width: 150px;
+        height: 40px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 .imageCard:hover{
     transform: scale(105%);
 }
@@ -50,7 +76,7 @@
     position: relative;
     top: -10px;
     width: 110%;
-    aspect-ratio: 1 / 1;    /* force square */
+    aspect-ratio: 3 / 2;    /* force square */
     overflow: hidden;
 }
 

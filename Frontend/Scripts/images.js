@@ -1,26 +1,80 @@
 import {get,post,put,del} from "../Scripts/fetchUtil.js";
 document.addEventListener("DOMContentLoaded", (event) => initApp(event));
 
-const listOfTitles = [
-        "nemt",
-        "støj"
-]
+var listOfTitles = [];
+var images;
+var page = 0;
 
 async function initApp(event){
-    const images = await getImages();
-
-    getInfo();
-
+    images = await getImages();
+    await getInfo();
     console.log(images);
+    reloadAndRenderImages();
+    
+    addEventListeners();
+    
 
-    images.forEach((element) => renderImageCard(element))
+}
 
+function addEventListeners(){
+    document.getElementById("prevButton").addEventListener("click", () => handlePageClick("prev"));
+    document.getElementById("nextButton").addEventListener("click", () => handlePageClick("next"));
+    
+    
+}
+
+function handlePageClick(direction){
+    if(direction == "next"){
+        page++;
+    }else{
+        page--;
+    }
+
+    if(page < 0){
+        page = 0;
+    }
+
+    if(page*12 > images.length){
+        page--
+    }
+
+    reloadAndRenderImages();
+}
+
+function reloadAndRenderImages(){
+    document.getElementById("images").innerHTML = "";
+
+    console.log("Loading images")
+    const lowNumber = page*12;
+    var highNumber = page*12+12;
+
+    
+
+    if(highNumber>images.length){
+        highNumber = images.length;
+    }
+
+document.getElementById("page").innerHTML = (lowNumber+1) + "-" + (highNumber) + " ud af " + (images.length);
+
+    for(var i = lowNumber; i<highNumber; i++){
+        console.log(highNumber);
+        console.log(lowNumber);
+        console.log("Rendering: " + images[i]);
+        if(images[i]){
+            renderImageCard(images[i]);
+        }
+    }
 }
 
 async function getInfo(){
     //Get list of titles from the backend and set the list.
     const plays = await get("http://127.0.0.1:8080/api/plays");
     console.log(plays);
+
+    listOfTitles = [];
+
+    plays.forEach((element) => {listOfTitles.push(element.title)});
+    console.log(listOfTitles);
 }
 
 function renderImageCard(imageDto){
@@ -33,8 +87,6 @@ function renderImageCard(imageDto){
 
     const card = addInfoToCard(imageDto, clone);
 
-    
-
     images.appendChild(card);
 
 }
@@ -42,21 +94,20 @@ function renderImageCard(imageDto){
 function addInfoToCard(imageDto, card){
     card.getElementById("imgPreview").src = "http://127.0.0.1:8080/api" + imageDto.url;
     card.getElementById("imgTitle").innerHTML = imageDto.url;
+    const playDropDown = card.getElementById("playDropDown");
+    addPlaysToDropDown(playDropDown);
 
     return card;
 }
 
-function addTheaterTitlesToDropDown(div){
-    //Fetch the titles from the list
-
-    listOfTitles.forEach(element => {
-        const newOption = document.createElement("option");
-        Option.name = element;
-        Option.id = element;
-
-        div.appendChild(newOption);
-    });
-
+function addPlaysToDropDown(playDropDown){
+    listOfTitles.forEach((element) => {
+        console.log("Adding " + element + " To menu")
+        const option = document.createElement("option");
+        option.value = element;
+        option.text = element;
+        playDropDown.appendChild(option);
+    })
 }
 
 async function getImages(){
