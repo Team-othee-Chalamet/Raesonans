@@ -96,16 +96,26 @@ function addInfoToCard(imageDto, card){
     card.getElementById("imgTitle").innerHTML = imageDto.url;
     const playDropDown = card.getElementById("playDropDown");
     addPlaysToDropDown(playDropDown);
+    playDropDown.value = imageDto.playTitle;
+
+    
+        card.getElementById("galInputBox").checked = imageDto.galleryVis;
+    
+
+        card.getElementById("splashInputBox").checked = imageDto.frontPageVis;
+    
 
     return card;
 }
 
 function addPlaysToDropDown(playDropDown){
+    const noneOption = document.createElement("option");
+    noneOption.value = null;
+    noneOption.text = "ingen";
+
     listOfTitles.forEach((element) => {
         console.log("Adding " + element + " To menu")
-        const option = document.createElement("option");
-        option.value = element;
-        option.text = element;
+        const option = new Option(element, element);
         playDropDown.appendChild(option);
     })
 }

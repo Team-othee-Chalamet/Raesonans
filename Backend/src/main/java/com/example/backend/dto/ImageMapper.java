@@ -1,6 +1,7 @@
 package com.example.backend.dto;
 
 import com.example.backend.model.Image;
+import com.example.backend.model.Play;
 import com.example.backend.service.PlayService;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +25,14 @@ public class ImageMapper {
         if (image == null){
             return null;
         }
-        return new ImageDto(image.getGalleryVis(), image.getFrontPageVis(), image.getPlay().getTitle(), image.getImagePath());
+
+        String playTitle = "";
+
+        if (image.getPlay() != null){
+            playTitle = image.getPlay().getTitle();
+        }
+
+        return new ImageDto(image.getGalleryVis(), image.getFrontPageVis(), playTitle, image.getImagePath());
     }
 
     public static Image toEntity(ImageDto imageDto){

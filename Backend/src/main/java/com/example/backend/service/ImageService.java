@@ -35,7 +35,9 @@ public class ImageService {
             //Saving the entry in the database for later retrieval
             Image newImage = ImageMapper.infoToEntity(imageInfoDto);
             newImage.setImagePath(url);
-            playService.getPlayEntityFromTitle(imageInfoDto.playTitle()).addImage(newImage);
+            if (!imageInfoDto.playTitle().equalsIgnoreCase("")){
+                playService.getPlayEntityFromTitle(imageInfoDto.playTitle()).addImage(newImage);
+            }
 
             imageRepo.save(newImage);
         }
