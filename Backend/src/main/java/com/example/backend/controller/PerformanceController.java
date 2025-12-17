@@ -28,7 +28,7 @@ public class PerformanceController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PerformanceDto> getPerformanceById(@PathVariable Long performanceId) {
+    public ResponseEntity<PerformanceDto> getPerformanceById(@PathVariable("id") Long performanceId) {
         return ResponseEntity.ok(performanceService.getPerformanceById(performanceId));
     }
 
@@ -38,16 +38,16 @@ public class PerformanceController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PerformanceDto> updatePerformance(@PathVariable Long performanceId, @RequestBody PerformanceDto performanceDto) {
-        try {
+    public ResponseEntity<PerformanceDto> updatePerformance(@PathVariable("id") Long performanceId, @RequestBody PerformanceDto performanceDto) {
+//        try {
             return ResponseEntity.ok(performanceService.editPerformance(performanceId, performanceDto));
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+//        }
     }
 
     @DeleteMapping("/{id}")
-    public void deletePerformanceById(@PathVariable Long performanceId) {
+    public void deletePerformanceById(@PathVariable("id") Long performanceId) {
         performanceService.deletePerformance(performanceId);
     }
 }

@@ -67,7 +67,8 @@ public class PerformanceService {
             Performance updatedPerformance = existingPerformance.get();
             updatedPerformance.setPerformanceDate(performance.getPerformanceDate());
             updatedPerformance.setLocation(performance.getLocation());
-            updatedPerformance.setPlay(performance.getPlay());
+            Play play = playRepo.findById(performanceDto.playPreviewDto().id()).orElseThrow(() -> new RuntimeException("Forestilling ikke fundet."));
+            updatedPerformance.setPlay(play);
             updatedPerformance.setTime(performance.getTime());
             return PerformanceMapper.toDto(performanceRepo.save(updatedPerformance));
         }

@@ -9,10 +9,12 @@ async function initApp() {
 }
 
 async function setUpEventListeners() {
-    const createForm = document.querySelector('#createPerformanceForm');
-    createForm.addEventListener('submit', savePerformance);
-    const openModal = document.querySelector("#show-modal");
-    openModal.addEventListener("click", showModal);
+    //const createForm = document.querySelector('#createPerformanceForm');
+    //createForm.addEventListener('submit', savePerformance);
+    const performanceContainer = document.querySelector('#performance-container');
+    performanceContainer.addEventListener('click', handlePerformanceClick);
+    //const openModal = document.querySelector("#show-modal");
+    //openModal.addEventListener("click", showModal);
     const closeModal = document.querySelector("#close-modal");
     closeModal.addEventListener("click", hideModal);
     const updateForm = document.querySelector("#performance-form");
@@ -35,12 +37,12 @@ function hideModal() {
 async function handlePerformanceClick(event) {
     const target = event.target;
 
-    if (target.classList.contains("update-btn")) {
+    if (target.classList.contains(".edit-button")) {
         const card = target.closest(".performance-card");
-        const performanceId = card.getAttribute("performanceId");
+        const performanceId = card.getAttribute("id");
 
         const performanceToUpdate = {
-            performanceId: performanceId,
+            id: performanceId,
             play: card.querySelector(".performance-title").textContent,
             location: card.querySelector(".performance-location").textContent,
             performanceDate: card.querySelector(".performance-date").textContent,
@@ -50,9 +52,9 @@ async function handlePerformanceClick(event) {
         fillPerformanceForm(performanceToUpdate);
         showModal();
     }
-    else if (target.classList.contains("delete-btn")) {
+    else if (target.classList.contains(".delete-button")) {
         const card = target.closest(".performance-card");
-        const performanceId = card.getAttribute("performanceId");
+        const performanceId = card.getAttribute("id");
         await deletePerformance(performanceId);
     }
     await reloadAndRender();
@@ -71,7 +73,7 @@ async function handleFormSubmit(event) {
         time: formData.get("time"),
         ticketLink: formData.get("ticket-link")
     }
-    const performanceId = formData.get("performanceId")
+    const performanceId = formData.get("id")
     await updatePerformance(performanceId, performance);
 
     form.reset();
