@@ -3,71 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Specific Play Page</title>
-    <link rel="stylesheet" href="../Styling/playInformation.css">
+    <title>Simplified Play Page</title>
     <link rel="stylesheet" href="../Styling/headerAndFooter.css">
-
-</head>
+    <link rel="stylesheet" href="../Styling/playInformation.css"> 
+    </head>
 <body>
 
-<header id="header"></header>
+    <header id="header"></header>
+    
+    <div id="banner"> 
+        <button id="change-image-button">SKIFT BILLEDE</button>
+    </div>
+    <!--
+    <div id="space">
+        <p>
 
-<div class="container">
 
-    <!-- LEFT COLUMN -->
-    <aside class="left-col">
-        <h3>Info</h3>
-        <div id="infoBox">
-            <!-- Dynamically filled -->
-        </div>
-    </aside>
-
-    <!-- MIDDLE COLUMN -->
-    <main class="middle-col">
-
-        <!-- Play description -->
-        <section class="section">
-            <h2 id="playTitleMiddle">Nemt</h2>
-            <p id="playDescription"></p>
-        </section>
-
-        <!-- Performers -->
-        <section class="section">
-            <h3>Medvirkende</h3>
-            <ul id="performersList"></ul>
-        </section>
-
-        <!-- Ticket link -->
-        <section class="section">
-            <h3>Link til køb</h3>
-            <a id="ticketLink" href="#" target="_blank"></a>
-        </section>
-
-        <!-- Credits -->
-        <section class="section">
+        </p>
+    </div>
+-->
+    <div class="container">
+        <aside class="left-col">
             <h3>Kreditering</h3>
-            <div id="creditsList" class="credits"></div>
-        </section>
+            <section><div id="creditsList" class="credits"></div></section>
+        </aside>
 
-        <!-- Supporters -->
-        <section class="section">
-            <h3>Med støtte fra</h3>
-            <ul id="supportList"></ul>
-        </section>
+        <main class="middle-col">
+            <div id="middleContentWrapper">
+                <section class="content-block">
+                    <h1 id="playTitleMiddle">Nemt</h1>
+                    <p id="playDescription">
+                        </p>
+                </section>
+            </div>
+        </main>
 
-    </main>
+        <aside class="right-col">
+            <h3>Anmeldelser</h3>
+            <div id="reviewsContainer">
+                </div>
+        </aside>
+    </div> 
 
-    <!-- RIGHT COLUMN -->
-    <aside class="right-col">
-        <h3>Anmeldelser</h3>
-        <div id="reviewsContainer"></div>
-    </aside>
+    <footer id="footer"></footer>
 
-</div>
-
-<script type="module" src="../Scripts/header.js"></script>
-<script type="module" src="../Scripts/playInformationScript.js"></script>
-
-
+    <script type="module" src="../Scripts/header.js"></script>
+    <script type="module" src="../Scripts/playInformationScript.js"></script>
 </body>
 </html>

@@ -1,7 +1,9 @@
 package com.example.backend.config;
 
+import com.example.backend.model.Image;
 import com.example.backend.model.Performance;
 import com.example.backend.model.Play;
+import com.example.backend.repo.ImageRepo;
 import com.example.backend.repo.PerformanceRepo;
 import com.example.backend.repo.PlayRepo;
 import org.springframework.boot.CommandLineRunner;
@@ -13,14 +15,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Configuration
+/*@Configuration
 public class InitDataConfig {
 
     @Bean
     @Profile("!test")
     CommandLineRunner loadTestData(
             PerformanceRepo performanceRepository,
-            PlayRepo playRepository) {
+            PlayRepo playRepository, ImageRepo imageRepo) {
 
         return args -> {
 
@@ -32,10 +34,32 @@ public class InitDataConfig {
                 // ----- LAV NOGLE TEST-PLAYS -----
                 Play hamlet = new Play();
                 hamlet.setTitle("Hamlet");
+                Image hamletImage = new Image();
+                hamletImage.setPlay(hamlet);
+                hamlet.setSplashImage(hamletImage);
+                hamlet.addImage(hamletImage);
+                hamletImage.setFrontPageVis(true);
+                hamletImage.setImagePath("/images/shakespeare-hamlet-260463439.jpg");
+
                 Play macbeth = new Play();
                 macbeth.setTitle("Macbeth");
+                Image macBethImage = new Image();
+                macBethImage.setPlay(hamlet);
+                macbeth.setSplashImage(macBethImage);
+                macbeth.addImage(macBethImage);
+                macBethImage.setFrontPageVis(true);
+                macBethImage.setImagePath("/images/macbeth-background3b-3603776651.jpg");
 
-                playRepository.saveAll(List.of(hamlet, macbeth));
+                Play nemt = new Play();
+                nemt.setTitle("Nemt");
+                Image nemtImage = new Image();
+                nemtImage.setPlay(nemt);
+                nemt.setSplashImage(nemtImage);
+                nemt.addImage(nemtImage);
+                nemtImage.setFrontPageVis(true);
+                nemtImage.setImagePath("images/atv-flat-design-vector-2597015131.jpg");
+
+                playRepository.saveAll(List.of(hamlet, macbeth, nemt));
 
                 // ----- LAV PERFORMANCE DATA -----
                 Performance perf1 = new Performance();
@@ -65,4 +89,4 @@ public class InitDataConfig {
             }
         };
     }
-}
+}*/

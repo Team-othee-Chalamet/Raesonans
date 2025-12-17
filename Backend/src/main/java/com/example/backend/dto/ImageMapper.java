@@ -1,6 +1,7 @@
 package com.example.backend.dto;
 
 import com.example.backend.model.Image;
+import com.example.backend.service.PlayService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,13 +21,27 @@ public class ImageMapper {
     }
 
     public static ImageDto toDto(Image image){
-        return new ImageDto();
+        if (image == null){
+            return null;
+        }
+        return new ImageDto(image.getGalleryVis(), image.getFrontPageVis(), image.getPlay().getTitle(), image.getImagePath());
     }
 
     public static Image toEntity(ImageDto imageDto){
         Image newImage = new Image();
 
-        //Add real mapping here when image class is finished
+        newImage.setGalleryVis(imageDto.galleryVis());
+        newImage.setFrontPageVis(imageDto.frontPageVis());
+        newImage.setImagePath(imageDto.url());
+
+        return newImage;
+    }
+
+    public static Image infoToEntity(ImageInfoDto imageInfoDto){
+        Image newImage = new Image();
+
+        newImage.setGalleryVis(imageInfoDto.galleryVis());
+        newImage.setFrontPageVis(imageInfoDto.frontPageVis());
 
         return newImage;
     }

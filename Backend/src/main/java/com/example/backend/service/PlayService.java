@@ -38,6 +38,9 @@ public class PlayService {
     public PlayDto getPlayFromId(Long id){
         return PlayMapper.toFullDto(playRepo.getById(id));
     }
+    public Play getPlayEntityFromTitle(String title){
+        return playRepo.getByTitle(title);
+    }
 
     public PlayDto saveNewPlay(PlayDto playDto){
         Play newPlay = PlayMapper.toEntity(playDto);

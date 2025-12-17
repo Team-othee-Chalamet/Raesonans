@@ -1,4 +1,4 @@
-import { get, put, del } from "../Scripts/fetchUtil.js"; // Import the utility functions
+import { fetchAllPlays} from "../API/playApi.js"; // Import the utility functions
 
 const API_URL = "http://localhost:8080/api/plays";
 
@@ -6,12 +6,6 @@ const API_URL = "http://localhost:8080/api/plays";
 // Check if user is logged in (replace with backend check)
 function isLoggedIn() {
     return true; // or false
-}
-
-
-// GET all plays
-async function fetchAllPlays() {
-    return await get(API_URL);
 }
 
 // Update (PUT) a play (only if logged in)
@@ -70,43 +64,63 @@ function renderPlays(plays, gridId) {
 }
 
 
-//Fetch alle aktuelle plays
-async function fetchAktuellePlays() {
-    const plays = await fetchAllPlays();
-    return plays.filter(p => p.isActive === true);
+function filterAktuellePlays(plays) {
+    // filtrere
+    return plays.filter(p => p.isActive === true); 
 }
 
-//Fetch alle forrige plays
-async function fetchTidligerePlays() {
-    const plays = await fetchAllPlays();
+function filterTidligerePlays(plays) {
     return plays.filter(p => p.isActive === false);
 }
 
+function renderAdminButton() {
+    // 1. Tjek om logget ind
+    if (!isLoggedIn()) return;
+
+    // 2. Find containeren hvor knappen skal bo (boxWithCoolBackGround)
+    const mainContainer = document.querySelector(".boxWithCoolBackGround");
+    if (!mainContainer) return;
+
+    // 3. Lav container til knappen (for at centrere den)
+    const btnContainer = document.createElement("div");
+    btnContainer.classList.add("admin-btn-container");
+
+    // 4. Lav selve knappen
+    const btn = document.createElement("button");
+    btn.textContent = "+ Opret Ny Forestilling";
+    btn.classList.add("create-play-btn");
+
+    // 5. Link til createPlay.html
+    btn.addEventListener("click", () => {
+        window.location.href = "createPlay.html";
+    });
+
+    // 6. Indsæt i DOM
+    btnContainer.appendChild(btn);
+    
+    // "prepend" indsætter den som det FØRSTE barn i containeren
+    // (før "Aktuelle" sektionen)
+    mainContainer.prepend(btnContainer);
+}
 
 
 // Initialize
 document.addEventListener("DOMContentLoaded", async () => {
+    
+    // 1. Hent ALLE plays EEN gang (Fetch ALL plays ONCE)
+    const allPlays = await fetchAllPlays(); 
+    
+    // 2. Filtrér lokalt (Filter locally)
+    const aktuelleItems = filterAktuellePlays(allPlays);
+    const tidligereItems = filterTidligerePlays(allPlays);
 
-
-    // Hent alle plays
-
-    const aktuelleItems = await fetchAktuellePlays();
-    const tidligereItems = await fetchTidligerePlays();
-
-
-
-
-    // Få alle plays efter dags dato og sæt dem in i aktuelleItems
-
-
+    // 3. Render
     renderPlays(aktuelleItems, "aktuelle-grid");
-
-
-
-    // Få alle plays for dags dato og sæt dem ind i tidligereItems
-
-
     renderPlays(tidligereItems, "tidligere-grid");
-    
-    
+
+    //render admin knap hvis logget ind
+    renderAdminButton();
+
 });
+
+

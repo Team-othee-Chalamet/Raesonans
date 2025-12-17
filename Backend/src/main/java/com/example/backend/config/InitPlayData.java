@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Component
+/*@Component
 @Profile("!test")
 public class InitPlayData implements CommandLineRunner {
     private final ImageRepo imageRepo;
@@ -27,4 +27,4 @@ public class InitPlayData implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
     }
-}
+}*/

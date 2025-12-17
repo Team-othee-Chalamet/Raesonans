@@ -42,6 +42,10 @@ public class TokenService {
         return Base64.getEncoder().encodeToString(bytes);
     }
 
+    public byte[] stringToBytes(String token) {
+        return Base64.getDecoder().decode(token);
+    }
+
     public String hashToken(byte[] tokenBytes) {
         // MessageDigest is an algorithm to hash data
         try {
@@ -74,4 +78,7 @@ public class TokenService {
         return TokenMapper.toDto(tokenRepo.save(token));
     }
 
+    public Token getTokenById(Long id) {
+        return tokenRepo.getById(id);
+    }
 }

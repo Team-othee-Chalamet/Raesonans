@@ -4,7 +4,8 @@ import com.example.backend.model.AppUser;
 
 import java.time.LocalDateTime;
 
-public record TokenDTO(AppUser appUser,
+public record TokenDTO(Long id,
+                       AppUser appUser,
                        String token,
                        LocalDateTime expiration) {
 }

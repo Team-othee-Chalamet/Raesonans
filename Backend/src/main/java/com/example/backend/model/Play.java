@@ -10,6 +10,8 @@ import java.util.List;
 @Entity
 public class Play extends BaseEntity {
     String title;
+
+    @Column(columnDefinition = "TEXT") //Nødvendig for lange tekster for MySQL
     String description;
 
     @OneToOne
@@ -48,7 +50,7 @@ public class Play extends BaseEntity {
     }
 
     //HelperMethods
-    public boolean isPlayActive(){
+    public Boolean isPlayActive(){
         for (Performance p: performances){
             if (p.getPerformanceDate().isAfter(LocalDate.now())){
                 return true;
@@ -58,6 +60,7 @@ public class Play extends BaseEntity {
     }
 
     //Getters
+
 
     public String getTitle() {
         return title;

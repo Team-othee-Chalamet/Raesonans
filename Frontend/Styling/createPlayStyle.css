@@ -1,160 +1,171 @@
-/* Global */
+/* createPlayStyle.css */
+
+/* --- GLOBAL RESET & LAYOUT --- */
 html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     overflow-x: hidden;
 }
 
 body {
-    margin: 0;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh;
     font-family: Arial, sans-serif;
     color: #222;
 }
 
-/* NAVBAR */
-.navbar {
+/* --- PAGE 1: LIST VIEW (play.html) --- */
+body .boxWithCoolBackGround {
+    flex: 1 0 auto;
+    position: relative;
     width: 100%;
-    background: white;
-    padding: 15px 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+    height: auto !important; 
+    min-height: 100vh;
+    padding-top: 10vh; /* Clear Header */
+    padding-bottom: 30vh; /* Clear Footer */
 }
 
-.navbar .logo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #999;
-}
+/* --- PAGE 2: FORM VIEW (createPlay.html) --- */
+/* This section handles the new page */
 
-.navbar nav a {
-    margin-left: 25px;
-    text-decoration: none;
-    font-size: 14px;
-    color: #ff59c7;
-    font-weight: bold;
-}
-
-/* GRADIENT SECTION */
 .gradient-bg {
-    padding: 80px 0 140px;
+    flex: 1 0 auto; /* Pushes footer down */
+    width: 100%;
+    /* A nice gradient background */
+    background: linear-gradient(135deg, #ffd36b 0%, #e665a0 50%, #6a3dad 100%);
+    
+    /* Layout to center the form */
     display: flex;
     justify-content: center;
+    align-items: flex-start; /* Aligns to top so we can add padding */
+    
+    padding-top: 140px; /* Space for the Header */
+    padding-bottom: 40vh; /* Space for the Footer */
+    box-sizing: border-box;
 }
 
-/* CARD */
 .form-card {
-    width: 420px;
     background: white;
-    padding: 35px;
-    border-radius: 6px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px; /* Keeps the form from getting too wide */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    margin: 0 20px; /* Prevents touching edges on mobile */
 }
 
 .form-card h2 {
     margin-top: 0;
-    font-size: 22px;
+    color: #6a3dad;
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-/* INPUTS */
-label {
+/* Form Inputs Styling */
+form label {
     display: block;
-    font-size: 11px;
-    margin: 10px 0 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    letter-spacing: 0.5px;
 }
 
-input, textarea, select {
+form input[type="text"],
+form textarea,
+form select {
     width: 100%;
-    border: 1px solid #eee;
-    padding: 8px;
-    border-radius: 3px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     font-size: 14px;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+    font-family: inherit;
 }
 
-textarea {
-    height: 110px;
-    resize: none;
+form textarea {
+    height: 100px;
+    resize: vertical;
 }
 
-/* PLUS BUTTON */
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    background-color: #6a3dad;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #ff59c7;
+}
+
+/* Plus Button (For credits) */
 .plus-btn {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     background: #ff59c7;
     color: white;
     border-radius: 50%;
+    margin: 20px auto 10px auto;
+    cursor: pointer;
+    position: relative;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
-    margin: 15px auto 25px;
-    font-size: 20px;
-    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* SUBMIT BUTTON */
-.submit-btn {
-    width: 100%;
-    background: #ff59c7;
-    color: white;
-    border: none;
-    padding: 10px 0;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    box-sizing: border-box;
+/* Create the Plus symbol using CSS pseudo-elements */
+.plus-btn::before, .plus-btn::after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 2px;
 }
+.plus-btn::before { width: 20px; height: 4px; }
+.plus-btn::after { width: 4px; height: 20px; }
 
-/* FOOTER */
+
+/* --- SHARED STYLES (Footer, Grid, etc) --- */
+
 footer {
-    background: #6a3dad;
+    position: relative;
+    z-index: 100;
+    background-color: #6a3dad;
     color: white;
-    padding-top: 40px;
+    flex-shrink: 0;
+    width: 100%;
 }
 
-.footer-container {
-    display: flex;
-    justify-content: center;
-    gap: 120px;
-    padding-bottom: 40px;
-}
-
-.footer-col h4 {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.footer-col a {
-    display: block;
-    text-decoration: none;
-    color: white;
-    margin: 3px 0;
-    font-size: 14px;
-}
-
-.footer-col p {
-    font-size: 14px;
-}
-
-footer .copyright {
-    text-align: center;
-    padding-bottom: 20px;
-    font-size: 13px;
-    opacity: 0.8;
-}
-/* SECTIONS */
 .section {
-    padding: 60px 50px;
+    padding: 0 50px 20px 50px;
+    position: relative;
+    z-index: 2;
 }
 
 .section h2 {
-    color: #6a3dad;
-    font-size: 24px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    font-size: 28px;
     margin-bottom: 30px;
     text-align: left;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    padding-bottom: 10px;
+    display: inline-block;
 }
 
-/* GRID LAYOUT */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -162,70 +173,70 @@ footer .copyright {
     margin-bottom: 40px;
 }
 
-/* BOX STYLES */
-.box {
+.play-box {
     position: relative;
-    background: white;
-    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #333; 
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-
-.box:hover {
-    transform: translateY(-5px);
-}
-
-.box img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.box-content {
-    padding: 20px;
-}
-
-.box h3 {
-    margin: 0 0 10px;
-    color: #6a3dad;
-    font-size: 18px;
-}
-
-.box p {
-    margin: 0;
-    color: #555;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-/* REDIGER BUTTON */
-.rediger-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ff59c7;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, border-color 0.2s ease;
     cursor: pointer;
-    display: none; /* Hidden by default */
+    display: flex;
+    flex-direction: column;
+    min-height: 150px;
 }
 
-.box.logged-in .rediger-btn {
-    display: block; /* Show if logged in */
+.play-box:hover {
+    transform: translateY(-5px);
+    border-color: #ff59c7;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
-/* RESPONSIVE ADJUSTMENTS */
+.play-box h3 {
+    margin: 20px 20px 10px;
+    color: #6a3dad;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.play-box p {
+    margin: 0 20px 20px;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Admin Button (from previous steps) */
+.admin-btn-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.create-play-btn {
+    background-color: #222;
+    color: #fff;
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.create-play-btn:hover {
+    background-color: #ff59c7;
+    border-color: #ff59c7;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    .section {
-        padding: 40px 20px;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
+    .section { padding: 0 20px; }
+    .grid { grid-template-columns: 1fr; }
+    body .boxWithCoolBackGround { padding-top: 100px; }
+    
+    /* Responsive for form page */
+    .gradient-bg { padding-top: 100px; }
+    .form-card { padding: 20px; }
 }
-

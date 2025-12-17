@@ -1,6 +1,12 @@
 // Method to build fetch type
 function createFetchOptions(httpMethod, body, headers = {}) {
     
+    //Get token from localStorage, if it exists, add to headers
+    const token = localStorage.getItem("token");
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+
     // buildes options obj
   const options = {
     method: httpMethod,
@@ -12,9 +18,13 @@ function createFetchOptions(httpMethod, body, headers = {}) {
 
   // Not all requests require a body, hence the if statement
   if (body) {
-    // Converts the object to a JSON string
+    if (body instanceof FormData){
+      options.body = body;
+    }else{
+      // Converts the object to a JSON string
     options.body = JSON.stringify(body);
     options.headers["Content-Type"] = "application/json";
+    }
   }
   return options;
 }
@@ -23,6 +33,13 @@ async function responseHandler(res) {
   // 204 = no content
   if (res.status === 204) {
     return null;
+  }
+
+  // 401 unautorized
+  if (res.status === 401) {
+    console.log("401");
+    window.location.href = "login.html";
+    return;
   }
 
   if (!res.ok) {
@@ -45,6 +62,13 @@ export async function get(url, headers) {
 
 export async function post(url, body, headers) {
   const options = createFetchOptions("POST", body, headers);
+  console.log(options + "Options Fetchutil")
+  const res = await fetch(url, options);
+  return responseHandler(res);
+}
+
+export async function postImage(url, body, headers) {
+  const options = createFetchOptions("POST", body, headers, true);
   const res = await fetch(url, options);
   return responseHandler(res);
 }
