@@ -38,8 +38,7 @@ public class InitDataConfig {
                 hamletImage.setPlay(hamlet);
                 hamlet.setSplashImage(hamletImage);
                 hamlet.addImage(hamletImage);
-                hamletImage.setFrontPageVis(true);
-                hamletImage.setImagePath("/images/shakespeare-hamlet-260463439.jpg");
+                hamletImage.setImagePath("/image/shakespeare-hamlet-260463439.jpg");
 
                 Play macbeth = new Play();
                 macbeth.setTitle("Macbeth");
@@ -47,8 +46,7 @@ public class InitDataConfig {
                 macBethImage.setPlay(hamlet);
                 macbeth.setSplashImage(macBethImage);
                 macbeth.addImage(macBethImage);
-                macBethImage.setFrontPageVis(true);
-                macBethImage.setImagePath("/images/macbeth-background3b-3603776651.jpg");
+                macBethImage.setImagePath("/image/macbeth-background3b-3603776651.jpg");
 
                 Play nemt = new Play();
                 nemt.setTitle("Nemt");
@@ -56,8 +54,7 @@ public class InitDataConfig {
                 nemtImage.setPlay(nemt);
                 nemt.setSplashImage(nemtImage);
                 nemt.addImage(nemtImage);
-                nemtImage.setFrontPageVis(true);
-                nemtImage.setImagePath("images/atv-flat-design-vector-2597015131.jpg");
+                nemtImage.setImagePath("/image/atv-flat-design-vector-2597015131.jpg");
 
                 playRepository.saveAll(List.of(hamlet, macbeth, nemt));
 

@@ -25,15 +25,35 @@ public class ImageController {
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> postImage(@RequestPart("file") MultipartFile file, @RequestPart("meta") ImageInfoDto imageInfoDto){
+    public ResponseEntity<HttpStatus> postImage(@RequestPart("file") MultipartFile file, @RequestPart("meta") ImageInfoDto imageInfoDto){
         System.out.println("recieved an image");
         System.out.println(file.getOriginalFilename());
 
         try {
             imageService.saveImage(file, imageInfoDto);
-            return ResponseEntity.ok("Success");
+            return ResponseEntity.ok(HttpStatus.CREATED);
         }
         catch (IOException e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
+    }
+
+    @PutMapping
+    public ResponseEntity<ImageDto> updateImage(@RequestBody ImageInfoDto imageInfoDto){
+            return ResponseEntity.ok(imageService.updateImage(imageInfoDto));
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteImage(@PathVariable("id") Long id){
+        try {
+            imageService.deleteImageWithId(id);
+            return ResponseEntity.ok(null);
+        }
+        catch (Exception e){
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
 
