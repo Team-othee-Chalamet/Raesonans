@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Styling/style.css" />
+    <link rel="stylesheet" href="../Styling/headerAndFooter.css" />
+    <link rel="stylesheet" href="../Styling/userGallery.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header id="header"></header>
+
+    <div class="boxWithCoolBackGround">
+        <div class="headFiller"></div>
+      <div class="bgBack" id="bgBack"></div>
+      <div class="bgFront" id="bgFront"></div>
+
+      <!-- YOUR THINGS GO HERE -->
+
+      <div class="buttons">
+        <button class="button" id="prevButton"><</button>
+        <div class="pageShowerDiv">
+          <div class="pageShower">
+            viser
+            <div class="page" id="page"></div>
+          </div>
+        </div>
+        <button class="button" id="nextButton">></button>
+      </div>
+
+      <div gallery id="gallery" class="gallery"></div>
+
+      <!-- YOUR THINGS GO HERE -->
+
+      <div class="footFiller"></div>
+      <!-- INCLUDE IF THE BG BOX GOES TO THE BOTTOM -->
+    </div>
+
+    <footer id="footer"></footer>
+
+    <script type="module" src="../Scripts/background.js"></script>
+    <script type="module" src="../Scripts/header.js"></script>
+    <script type="module" src="../Scripts/userGallery.js"></script>
+  </body>
+</html>

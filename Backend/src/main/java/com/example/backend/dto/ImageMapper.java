@@ -32,14 +32,23 @@ public class ImageMapper {
             playTitle = image.getPlay().getTitle();
         }
 
-        return new ImageDto(image.getGalleryVis(), image.getFrontPageVis(), playTitle, image.getImagePath());
+        Boolean isSplash = false;
+
+        if (image.getPlay() != null){
+            if (image.getPlay().getSplashImage().equals(image)){
+                isSplash = true;
+            }
+        }
+
+
+        return new ImageDto(image.getId(), image.getGalleryVis(), isSplash, playTitle, image.getImagePath());
     }
 
     public static Image toEntity(ImageDto imageDto){
         Image newImage = new Image();
 
+        newImage.setId(imageDto.id());
         newImage.setGalleryVis(imageDto.galleryVis());
-        newImage.setFrontPageVis(imageDto.frontPageVis());
         newImage.setImagePath(imageDto.url());
 
         return newImage;
@@ -48,8 +57,11 @@ public class ImageMapper {
     public static Image infoToEntity(ImageInfoDto imageInfoDto){
         Image newImage = new Image();
 
+        if (imageInfoDto.id() != null){
+            newImage.setId(imageInfoDto.id());
+        }
+
         newImage.setGalleryVis(imageInfoDto.galleryVis());
-        newImage.setFrontPageVis(imageInfoDto.frontPageVis());
 
         return newImage;
     }

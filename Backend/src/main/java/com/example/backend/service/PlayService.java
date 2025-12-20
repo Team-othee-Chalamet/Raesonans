@@ -103,6 +103,10 @@ public class PlayService {
         }
     }
 
+    public List<Play> getPlayEntities(){
+        return playRepo.findAll();
+    }
+
     public void deletePlay(Long id){
         try{
             playRepo.deleteById(id);

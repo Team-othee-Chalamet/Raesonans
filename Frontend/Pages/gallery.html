@@ -44,24 +44,29 @@
           <form action="submit" class="imageForm" id="cardForm">
             <h4 id="imgTitle">imageTitle</h4>
 
-            <input type="hidden" id="imageID" />
+            <input type="hidden" id="imageID" name="imageID" />
 
             <div class="input dropDown" id="inputDropDown">
               TeaterStykke
-              <select name="playDropDown" id="playDropDown"></select>
+              <select name="playDropDown" id="playDropDown" name="playDropDown"></select>
             </div>
 
             <div class="input" id="GalInput">
-              Vis i galleriet? <input type="checkbox" id="galInputBox" />
+              Vis i galleriet? <input type="checkbox" id="galInputBox" name="galInputBox"/>
             </div>
 
             <div class="input" id="splashInput">
               Sæt til splash Image?
-              <input type="checkbox" id="splashInputBox" />
+              <input type="checkbox" id="splashInputBox" name="splashInputBox"/>
             </div>
 
-            <button class="button" type="submit" id="gemButton">Gem</button>
+            <div class="input">
+              <button class="button saveEdit" type="submit" id="gemButton">Gem</button>
+              
+            </div>
+            
           </form>
+          <button class="button deleteBtn" id="deleteButton">X</button>
         </div>
       </template>
       <div class="images" id="images"></div>

@@ -5,8 +5,9 @@ var listOfTitles = [];
 var images;
 var page = 0;
 
+const url = "http://127.0.0.1:8080/api/"
+
 async function initApp(event){
-    images = await getImages();
     await getInfo();
     console.log(images);
     reloadAndRenderImages();
@@ -19,8 +20,59 @@ async function initApp(event){
 function addEventListeners(){
     document.getElementById("prevButton").addEventListener("click", () => handlePageClick("prev"));
     document.getElementById("nextButton").addEventListener("click", () => handlePageClick("next"));
+    /* document.getElementById("images").addEventListener("submit", (event) => handleImageClick(event)); */
+    document.getElementById("images").addEventListener("click", (event) => handleImageClick(event));
     
     
+}
+
+function handleImageClick(event){
+    console.log("Clicked: " + event.target);
+
+    if(event.target.classList.contains("saveEdit")){
+        handleSaveEditClick(event);
+    }
+    if(event.target.classList.contains("deleteBtn")){
+        handleDeleteClick(event);
+    }
+}
+
+async function handleDeleteClick(event){
+    
+    const target = event.target.parentElement;
+    console.log(target);
+    const id = target.querySelector("#imageID").value;
+    console.log(id);
+
+    await del("http://127.0.0.1:8080/api/images/"+id);
+
+    await reloadAndRenderImages();
+
+
+}
+
+async function handleSaveEditClick(event){
+
+    event.preventDefault();
+    const targetForm = event.target.parentElement.parentElement;
+    console.log(targetForm);
+
+    const formData = new FormData(targetForm);
+
+    console.log(formData);
+    
+    const imageDto = {
+        "id": formData.get("imageID"),
+        "galleryVis": formData.get("galInputBox") == "on",
+        "setSplash": formData.get("splashInputBox") == "on",
+        "playTitle": formData.get("playDropDown")
+    }
+
+    console.log(imageDto);
+
+    await put("http://127.0.0.1:8080/api/images", imageDto);
+
+    await reloadAndRenderImages();
 }
 
 function handlePageClick(direction){
@@ -41,7 +93,13 @@ function handlePageClick(direction){
     reloadAndRenderImages();
 }
 
-function reloadAndRenderImages(){
+async function refreshImages(){
+    images = await get(url+"images");
+}
+
+async function reloadAndRenderImages(){
+    await refreshImages();
+
     document.getElementById("images").innerHTML = "";
 
     console.log("Loading images")
@@ -54,7 +112,7 @@ function reloadAndRenderImages(){
         highNumber = images.length;
     }
 
-document.getElementById("page").innerHTML = (lowNumber+1) + "-" + (highNumber) + " ud af " + (images.length);
+    document.getElementById("page").innerHTML = (lowNumber+1) + "-" + (highNumber) + " ud af " + (images.length);
 
     for(var i = lowNumber; i<highNumber; i++){
         console.log(highNumber);
@@ -99,10 +157,13 @@ function addInfoToCard(imageDto, card){
     playDropDown.value = imageDto.playTitle;
 
     
+    card.getElementById("imageID").value = imageDto.id;
+
+    
         card.getElementById("galInputBox").checked = imageDto.galleryVis;
     
 
-        card.getElementById("splashInputBox").checked = imageDto.frontPageVis;
+        card.getElementById("splashInputBox").checked = imageDto.isSplash;
     
 
     return card;
@@ -114,7 +175,6 @@ function addPlaysToDropDown(playDropDown){
     noneOption.text = "ingen";
 
     listOfTitles.forEach((element) => {
-        console.log("Adding " + element + " To menu")
         const option = new Option(element, element);
         playDropDown.appendChild(option);
     })
