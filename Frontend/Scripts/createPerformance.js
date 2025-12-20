@@ -9,8 +9,8 @@ async function initApp() {
 }
 
 async function setUpEventListeners() {
-    const form = document.querySelector('#createPerformanceForm');
-    form.addEventListener('submit', savePerformance);
+    const createForm = document.querySelector('#createPerformanceForm');
+    createForm.addEventListener('submit', savePerformance);
 }
 
 async function savePerformance(event) {
@@ -27,12 +27,15 @@ async function savePerformance(event) {
     }
     await createPerformance(performance);
     form.reset();
+    window.location.href = "../Pages/performances.html";
+
 }
 
 async function loadPlays() {
     const plays = await fetchAllPlays();
 
     const dropdown = document.querySelector('#play')
+    dropdown.innerHTML = ''; 
     plays.forEach(play => {
         const option = document.createElement('option');
         option.value = play.id;
@@ -40,4 +43,3 @@ async function loadPlays() {
         dropdown.appendChild(option);
     });
 }
-

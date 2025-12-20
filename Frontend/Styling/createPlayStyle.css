@@ -25,27 +25,11 @@ body .boxWithCoolBackGround {
     height: auto !important; 
     min-height: 100vh;
     padding-top: 10vh; /* Clear Header */
-    padding-bottom: 30vh; /* Clear Footer */
+    padding-bottom: 40vh; /* Clear Footer */
 }
 
 /* --- PAGE 2: FORM VIEW (createPlay.html) --- */
 /* This section handles the new page */
-
-.gradient-bg {
-    flex: 1 0 auto; /* Pushes footer down */
-    width: 100%;
-    /* A nice gradient background */
-    background: linear-gradient(135deg, #ffd36b 0%, #e665a0 50%, #6a3dad 100%);
-    
-    /* Layout to center the form */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Aligns to top so we can add padding */
-    
-    padding-top: 140px; /* Space for the Header */
-    padding-bottom: 40vh; /* Space for the Footer */
-    box-sizing: border-box;
-}
 
 .form-card {
     background: white;
@@ -75,7 +59,7 @@ form label {
     letter-spacing: 0.5px;
 }
 
-form input[type="text"],
+form input,
 form textarea,
 form select {
     width: 100%;
@@ -153,6 +137,8 @@ footer {
     padding: 0 50px 20px 50px;
     position: relative;
     z-index: 2;
+
+    width: 90%;
 }
 
 .section h2 {
@@ -239,4 +225,28 @@ footer {
     /* Responsive for form page */
     .gradient-bg { padding-top: 100px; }
     .form-card { padding: 20px; }
+}
+/* Slet knap på play-box */
+.delete-play-btn {
+    position: absolute; /* Låser den fast i forhold til boksen */
+    top: 10px;
+    right: 10px;
+    background-color: #ff4d4d; /* Rød */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Gør den rund */
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10; /* Sørger for den ligger ovenpå alt andet */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.delete-play-btn:hover {
+    background-color: #cc0000;
+    transform: scale(1.1);
 }
