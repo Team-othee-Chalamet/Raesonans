@@ -3,8 +3,13 @@ import {get,post,put,del} from "../Scripts/fetchUtil.js";
 
 document.addEventListener("DOMContentLoaded", () => initApp());
 
+
+
 function initApp(){
+    var listOfTitles = [];
+
     addEventListeners();
+    addOptionsToDropDown();
 
 
     function addEventListeners(){
@@ -41,4 +46,36 @@ function initApp(){
             post("http://127.0.0.1:8080/api/images", formData);
         }
     }
+    
+    async function addOptionsToDropDown(){
+       await getInfo();
+
+        const dropDown = document.getElementById("playDropDown");
+        addPlaysToDropDown(dropDown);
+
+    }
+
+    function addPlaysToDropDown(playDropDown){
+    const noneOption = document.createElement("option");
+    noneOption.value = null;
+    noneOption.text = "ingen";
+    playDropDown.appendChild(noneOption);
+
+    listOfTitles.forEach((element) => {
+        const option = new Option(element, element);
+        playDropDown.appendChild(option);
+    })
+}
+
+    async function getInfo(){
+        //Get list of titles from the backend and set the list.
+        const plays = await get("http://127.0.0.1:8080/api/plays");
+        console.log(plays);
+    
+        listOfTitles = [];
+    
+        plays.forEach((element) => {listOfTitles.push(element.title)});
+        console.log(listOfTitles);
+    }
+
 }

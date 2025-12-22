@@ -1,4 +1,4 @@
 package com.example.backend.dto;
 
-public record ImageDto(Boolean galleryVis, Boolean frontPageVis, String playTitle, String url) {
+public record ImageDto(Long id, Boolean galleryVis, Boolean isSplash, String playTitle, String url) {
 }

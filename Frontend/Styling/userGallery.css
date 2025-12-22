@@ -1,0 +1,40 @@
+.pageShowerDiv{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+
+    .pageShower{
+        display: flex;
+        width: 150px;
+        height: 40px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 10px;
+
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.gallery {
+  column-count: 4;
+  column-gap: 16px;
+  padding: 0 16px;
+}
+
+.gallery img {
+  
+  width: 100%;
+  margin-bottom: 16px;
+  break-inside: avoid;
+  display: block;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: baseline;
+}

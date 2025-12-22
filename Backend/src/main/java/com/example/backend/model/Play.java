@@ -14,8 +14,7 @@ public class Play extends BaseEntity {
     @Column(columnDefinition = "TEXT") //Nødvendig for lange tekster for MySQL
     String description;
 
-    @OneToOne
-    @JoinColumn(name = "splash_image_id")
+    @ManyToOne
     private Image splashImage;
 
     @OneToMany (mappedBy = "play", cascade = CascadeType.ALL, orphanRemoval = true)
