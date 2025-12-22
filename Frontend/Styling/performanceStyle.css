@@ -5,7 +5,7 @@ body {
 h1 {
     text-align: center;
     font-weight: bold;
-    color: #e649b4;
+    color: white;
     margin-top: 5px;
 }
 
@@ -132,7 +132,7 @@ h1 {
     opacity: 1;
 }
 
-.ticket-link, .add-performance-btn, .edit-button, .delete-button {
+.ticket-link, .edit-button, .delete-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -157,16 +157,31 @@ h1 {
 
 .ticket-link:hover,
 .edit-button:hover,
-.delete-button:hover,
-.add-performance-btn:hover {
+.delete-button:hover {
     background: #d13fa2;
 }
 
 .add-performance-btn {
+    background-color: #222;
+    color: #fff;
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
     display: block;
     width: fit-content;
     margin: 40px auto 0 auto;
+    text-decoration: none;
 }
+
+.add-performance-btn:hover {
+    background-color: #ff59c7;
+    border-color: #ff59c7;
+}
+
 
 [hidden] {
     display: none !important;

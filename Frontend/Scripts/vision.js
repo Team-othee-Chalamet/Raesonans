@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", initApp);
 
 function initApp() {
 
-const visionText = document.getElementById("visionText");
-visionText.textContent="Javascript fanger";
+//const visionText = document.getElementById("visionText");
+//visionText.textContent="Javascript fanger";
 
 const descriptionJessica = document.getElementById("descriptionJessica");
 descriptionJessica.textContent="Javascript fanger";

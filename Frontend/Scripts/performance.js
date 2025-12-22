@@ -40,7 +40,7 @@ function renderPerformances(performance, container) {
     // ${performance.playPreviewDto.splashImg} for image source when available
     performanceCard.innerHTML = `
     <div class="performance-top">
-        <img src="null" class="performance-image" />
+        <img src="${performance.playPreviewDto.splashImg}" class="performance-image" />
 
     <div class="performance-info">
         <h3 class="performance-title">${performance.playPreviewDto.title}</h3>

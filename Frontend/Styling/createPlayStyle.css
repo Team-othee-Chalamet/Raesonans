@@ -240,6 +240,7 @@ footer {
     .gradient-bg { padding-top: 100px; }
     .form-card { padding: 20px; }
 }
+
 /* Slet knap på play-box */
 .delete-play-btn {
     position: absolute; /* Låser den fast i forhold til boksen */
