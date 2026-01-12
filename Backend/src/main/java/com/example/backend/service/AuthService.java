@@ -106,6 +106,7 @@ public class AuthService {
     }
 
     public void logOut(String authHeader) {
+        System.out.println("Trying to logout");
         // Bearer is added in fetchUtil (frontend)
         if (authHeader == null || authHeader.isBlank() || !authHeader.startsWith("Bearer")) {
             return;
